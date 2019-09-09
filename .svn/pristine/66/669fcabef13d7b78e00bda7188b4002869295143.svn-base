@@ -1,0 +1,55 @@
+// 1、 打开framegooup
+const openFastNewsFrameGroup = () =>{
+    let headerH  = _syncPrefs('headerH'); // 父页面头部
+    let headerH1 = $api.offset($api.dom('header')).h;
+    let footerH = _syncPrefs('footerH');
+    api.openFrameGroup({
+        name: 'fast_group',
+        scrollEnabled: false,
+        rect: {
+            x:0,
+            y:headerH +headerH1 +5 ,
+            w:'auto',
+            marginBottom:footerH,
+        },
+        index: 0,
+        frames: [{
+            name: 'fast_all', 
+            url: 'fast_all.html'
+        },{
+            name: 'fast_mine', 
+            url: 'fast_mine.html'
+        },{
+            name: 'fast_shenhu', 
+            url: 'fast_shenhu.html'
+        },{
+            name: 'fast_gang', 
+            url: 'fast_gang.html'
+        },{
+            name: 'fast_uk', 
+            url: 'fast_uk.html'
+        },{
+            name: 'fast_us', 
+            url: 'fast_us.html'
+        }]
+    }, function(ret, err){
+        let name  = ret.name;
+        let index = ret.index;
+      
+    });
+}
+
+// 2. 点击tab栏切换
+const  spanClick  = () => {
+    $('header>span').on('click',function(){
+        let index = $(this).index();
+        console.log(JSON.stringify(index));
+        $(this).addClass('active').siblings('span').removeClass('active');
+        api.setFrameGroupIndex({
+            name: 'fast_group',
+            index,
+            scroll: true
+        });
+      
+    })
+}

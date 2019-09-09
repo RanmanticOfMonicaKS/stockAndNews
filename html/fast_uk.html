@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>快报-英股</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+            html,
+    body {
+        background-color: #010646;
+    }
+    </style>
+</head>
+<body>
+    <div class="uk_tempList"></div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/plugins/swiper.min.js"></script>
+<script src="../script/sl_news_fast_fm.js"></script>
+<script>
+                let a=[{
+                day:'2019-09-10',
+                dayCon:[ {
+                time:'12:15',
+                newsCon:'其第二大股东合肥建翔投资有限公司（以下简称“合肥建翔”）及第三大股东重庆渝资光电产业投资有限公司（以下简称“重庆渝资”）均计划在未来3个月内以集中竞价方式减持不超过约3.47亿股，即减持不超过公司总股本的1%。'
+            }, {
+                time:'08:15',
+                newsCon:'两家公司拟合计减持京东方A的股份约6.94亿股。如此“巨量”的减持计划，迅速在二级市场引发波澜。'
+            }, {
+                time:'06:15',
+                newsCon:'月6日，京东方A低开逾3个点，早盘跌幅一度达到6.56%。仅上午11时左右，京东方A的成交量就已与前一交易日相当。截至收盘，京东方A全天共成交3102.43万手，成交额达131.21亿元，较前一日分别放大66.49%和61.15%。不过，在全天维持低位震荡的局势下，京东方A尾盘有所拉升，收跌2.71%报4.3元/股。'
+            }]
+        },
+        {
+                day:'2019-09-08',
+                dayCon:[ {
+                time:'15:15',
+                newsCon:'作为OLED面板的龙头企业，京东方A在今年以来的OLED概念股炒作风潮中风头倍出，成为投资者的“宠儿”。2月1日至今，其股价涨幅接近70%。股价狂飙之下，大股东的“离场”意向自然容易引发猜想。'
+            }, {
+                time:'15:15',
+                newsCon:'据Wind数据统计，3月6日，京东方A的各类投资者中，机构投资者净卖出25.47亿元，而中户和散户投资者分别净买入8.57亿元和16.95亿元。可以看到，当天京东方A的交易更多表现为机构与中小散户筹码交接的模式。'
+            }, {
+                time:'15:15',
+                newsCon:'汇丰晋信2026生命周期基金经理刘淑生则表示，“是选择买入还是回避，最主要还是依据我们对公司基本面的未来展望，结合其估值来判断。对那些我们看好的标的，减持出现的股价回调往往为我们提供了较好的短期买入窗口。”'
+            }]
+        },
+        {
+                day:'2019-08-18',
+                dayCon:[ {
+                time:'18:20',
+                newsCon:'Wind数据统计，截至记者发稿前，今年以来共有366家公司合计发布672项减持计划，较去年同期的392项大幅增长，其中仅3月以来发布的减持计划就多达88项。此外，672项减持计划中，已完成的仅28项，绝大部分尚在进行阶段'
+            }, {
+                time:'18:15',
+                newsCon:'新闻主在A股做多氛围浓厚之下，大股东纷纷欲“套现”，这是否可视为“产业资本等认为A股已经集聚了较高风险，应及时落袋为安”的指标性信号？体'
+            }, {
+                time:'17:15',
+                newsCon:'确然，不少大股东密集减持的动作，或许与不看好公司未来价值关系并没有那么大，而是由于2018年的深度调整对于杠杆股本造成了巨大冲击，而今市场回暖这些杠杆股本急需“求生”，获得喘息机会，所以才纷纷减持。'
+            }]
+        }]
+
+    apiready = function(){
+        api.addEventListener({
+            name: 'str'
+        }, function(ret, err){
+            console.log(JSON.stringify(ret));
+            $('.uk_tempList').append(ret.value);
+        });
+        for (let i = 0 ; i<a.length ; i++) {
+            let item = a[i];
+            api.execScript({
+                frameName: 'sl_news_fast_fm',
+                script:'getStr('+ JSON.stringify(a[i]) +');'
+            });
+        }
+
+    }
+        
+</script>
+
+</html>

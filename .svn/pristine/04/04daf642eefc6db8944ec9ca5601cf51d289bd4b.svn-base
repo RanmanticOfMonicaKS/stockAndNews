@@ -1,0 +1,35 @@
+
+
+// 点开第N个页面
+const sl_opnwhichFrame = (index) => {
+    let fg = ['sl_home','sl_market','sl_news','sl_mine'];
+    let footerH = $api.offset($api.dom('.sl_footer')).h;
+    $api.setStorage('footerH', footerH);
+    let reload = false;
+    if(index ===  2)  {
+        reload = true;
+    } 
+    api.openFrame({
+        name: fg[index],
+        url: fg[index] + '.html',
+        rect: {
+            x: 0,
+            y: 0,
+            w: 'auto',
+            marginBottom:footerH,
+        },
+        reload,
+    });
+    // 改变顺序
+}
+// 2. 点击切换frame
+const sl_swithFrames = () => {
+    $('.sl_footer > li').on('click',function(){
+        let index = $(this).index();
+        console.log(JSON.stringify(index));
+        $api.setStorage('main_index', index);
+        $(this).addClass('active').siblings('li').removeClass('active');
+        let news_exist = $api.getStorage('news_group');
+        sl_opnwhichFrame(index);
+    })
+} 

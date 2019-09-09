@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>快报-自选</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+            html,
+    body {
+        background-color: #010646;
+    }
+    </style>
+</head>
+<body>
+    <div class="mine_tempList">
+
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/plugins/swiper.min.js"></script>
+<script src="../script/sl_news_fast_fm.js"></script>
+<script>
+                let a=[{
+                day:'2019-09-10',
+                dayCon:[ {
+                time:'15:15',
+                newsCon:'一般来说，个人存款比公司存款具有更高的稳定性，个人存款是邮储银行存款的最大组成部分，且增速稳定。2016-2018年，邮储银行个人存款占比均高于85%，存款总额、个人存款的年均复合增长率分别为8.81%、9.66%。较高的个人存款占比主要得益于邮储银行庞大的客户基础和零售优势'
+            }, {
+                time:'15:15',
+                newsCon:'[分红方案披露的当天，英力特收盘价为10.85元。据此计算，英力特的股息率高达11%以上。此前的2017年，中国神华、江铃汽车两家公司，分别进行了2.97元/股、2.317元/股现金分红。相对于披露前的股价，中国神华的股息率超过16%，江铃汽车A、B股的股息率则达14.2%、21.3%]'
+            }, {
+                time:'15:15',
+                newsCon:'英力特8月8日披露的2018年半年报显示，该公司将以每10股派12元的方式，进行现金分红。按照方案披露当天的收盘价，其股息率高达11%以上。2017年以来，A股现金分红虽然明显提高，但英力特的股息率，仍然名列前茅，仅次于中国神华、江铃汽车等为数不多的几家公司。'
+            }]
+        },
+        {
+                day:'2019-09-08',
+                dayCon:[ {
+                time:'14:12',
+                newsCon:'英力特8月10日早间，深交所发出关注函，要求英力特就分红的资金来源、未来分红持续性、提议时间和方式、主要理由进行说明，并按规定报送内幕信息知情人名单。'
+            }, {
+                time:'11:15',
+                newsCon:'分红方案披露的当天，英力特收盘价为10.85元。据此计算，英力特的股息率高达11%以上。此前的2017年，中国神华、江铃汽车两家公司，分别进行了2.97元/股、2.317元/股现金分红。相对于披露前的股价，中国神华的股息率超过16%，江铃汽车A、B股的股息率则达14.2%、21.3%。'
+            }, {
+                time:'10:25',
+                newsCon:'货币资金之外，英力特仍有大量存款。财务报表显示，截至2018年6月底，该公司还有其他流动资产6.88亿元，而且全部为定期存款。两者相加，英力特目前的实际货币类资产超过8亿元，可满足现金分红需要。'
+            }]
+        },
+        {
+                day:'2019-08-18',
+                dayCon:[ {
+                time:'09:15',
+                newsCon:'公开信息显示，2007年至2010年，每股现金分红0.1元、0.3元、0.1元、0.2元，英力特分红金额1374万元、4120万元、1770万元、3540万元；2012年至2015年，每股现金分红0.5元、0.1元、0.2元、0.3元，总分金额约为8870万元、3030万元、6060万元、9090万元，以上合计现金分红约为3.7亿'
+            }, {
+                time:'08:15',
+                newsCon:'最近几年来，英力特经营逐步下滑。2014年至2017年，该公司营业收入分别为19.3亿元、16.9亿元、16亿元，只有2017年反弹至19.6亿元，；同期净利润则为5229万元、2970万元、1.09亿元、9331万元，虽然有所恢复，但仍然存在波动。2018年上半年，营业收入、净利润分别为10.04亿元、8586万元，同比增长-0.34%、20.8%；扣非净利润8384万元，同比增长22.39%。'
+            }, {
+                time:'07:15',
+                newsCon:'2016年12月6日，英力特再次公告称，英力特集团拟通过公开征集的方式，一次性整体协议转让持有的1.55亿股。2017年1月18日，天元锰业成为拟受让方。但仅仅隔了一个月，双方就龃龉不断。'
+            }]
+        }]
+
+    apiready = function(){
+        api.addEventListener({
+            name: 'str'
+        }, function(ret, err){
+            console.log(JSON.stringify(ret));
+            $('.mine_tempList').append(ret.value);
+        });
+        for (let i = 0 ; i<a.length ; i++) {
+            let item = a[i];
+            api.execScript({
+                frameName: 'sl_news_fast_fm',
+                script:'getStr('+ JSON.stringify(a[i]) +');'
+            });
+        }
+
+    }
+        
+</script>
+
+</html>

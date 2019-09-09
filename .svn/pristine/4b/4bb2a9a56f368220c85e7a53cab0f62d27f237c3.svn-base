@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>快报-全部</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+        html,
+        body {
+            background-color: #010646;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all_tempList">
+
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/plugins/swiper.min.js"></script>
+<script src="../script/sl_news_fast_fm.js"></script>
+<script>
+    let a=[{
+        day:'2019-09-10',
+        dayCon:[ {
+        time:'15:15',
+        newsCon:'8月29日晚间，中国石油披露2019年半年报，公司报告期共实现营业收入11962.59亿元，同比增长6.8%；归母净利润284.23亿元，同比增长3.6%；基本每股收益0.155元，比上年同期增加0.005元。公司拟中期每股派息0.06988元，并增加特别股息每股0.00777元，合计每股派息0.07765元，总派息额142.12亿元。'
+    }, {
+        time:'15:09',
+        newsCon:'据披露，今年上半年中国石油原油销售量达6539.5万吨，对比上年同期的5123.1万吨增长27.6%，同时天然气销售量达125.27万吨，对比上年同期的101.4万吨同比增长23.5%，此外公司汽油、柴油、煤油、重油、润滑油等销售量也均实现了小幅下滑。'
+    }, {
+        time:'15:02',
+        newsCon:'国家发改委数据显示，2019年上半年，原油加工量29335万吨，同比下降0.2%；成品油产量18425万吨，同比增长0.5%；成品油消费量15943万吨，比上年同期增长0.9%，其中汽油增长5.3%，柴油下降3.9%。'
+    }]
+},
+{
+        day:'2019-09-08',
+        dayCon:[ {
+        time:'12:04',
+        newsCon:'8月27日晚间，中国有色金属龙头中国铝业股份有限公司（下称“中国铝业”,02600.HK）发布了2019年半年度报告。上半年，中国铝业实现营业收入949.40亿元，和上年同期相比（同比）增长15.23%；归属于上市股东的净利润为7.06亿元，同比减少14.10%；基本每股收益0.035元/股，同比减少23.43%。'
+    }, {
+        time:'13:12',
+        newsCon:'2019年上半年，国内氧化铝现货最高价为3139元/吨，最低价为2657元/吨，平均价格2863元/吨，较去年同期略为下降0.9%。据统计，2019年上半年，全球氧化铝产量约为6279万吨，消费量约为6286万吨，同比均增长1.8%；中国氧化铝产量约为3603万吨，同比增长2.3%，消费量约为3587万吨，同比增长0.7%。'
+    }, {
+        time:'11:12',
+        newsCon:'2019年上半年，SHFE（上海期货交易所）现货和三个月期货的平均价分别为13777元/吨和13786元/吨，较去年同期分别下跌4.3%和5.5%。据统计，2019年上半年，全球原铝产量约为3175万吨，消费量约为3301万吨，同比分别增长0.1%和0.5%；中国原铝产量约为1786万吨，同比减少0.8%，消费量约为1806万吨，同比增长0.8%。'
+    }]
+},
+{
+        day:'2019-08-18',
+        dayCon:[ {
+        time:'08:15',
+        newsCon:'[分红方案披露的当天，英力特收盘价为10.85元。据此计算，英力特的股息率高达11%以上。此前的2017年，中国神华、江铃汽车两家公司，分别进行了2.97元/股、2.317元/股现金分红。相对于披露前的股价，中国神华的股息率超过16%，江铃汽车A、B股的股息率则达14.2%、21.3%]'
+    }, {
+        time:'09:15',
+        newsCon:'过去十多年中，英力特虽然多次现金分红，但金额都相对较低。此次分红若最终落实，总金额则将达到3.64亿元，相当于该公司此前11年分红总额。根据公开数据，2007年到2017年，英力特现金分红共计约3.7亿元'
+    }, {
+        time:'10:15',
+        newsCon:'分红方案披露的当天，英力特收盘价为10.85元。据此计算，英力特的股息率高达11%以上。此前的2017年，中国神华、江铃汽车两家公司，分别进行了2.97元/股、2.317元/股现金分红。相对于披露前的股价，中国神华的股息率超过16%，江铃汽车A、B股的股息率则达14.2%、21.3%'
+    }]
+}] // --------后期动态数据填补
+    apiready = function(){
+
+        api.addEventListener({
+            name: 'str'
+        }, function(ret, err){
+            console.log(JSON.stringify(ret));
+            $('.all_tempList').append(ret.value);
+        });
+        for (let i = 0 ; i<a.length ; i++) {
+            let item = a[i];
+            api.execScript({
+                frameName: 'sl_news_fast_fm',
+                script:'getStr('+ JSON.stringify(a[i]) +');'
+            });
+        }
+    }
+    
+    
+</script>
+
+</html>

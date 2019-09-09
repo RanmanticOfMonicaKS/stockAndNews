@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+
+    <title>起始页</title>
+    <link rel="stylesheet" href="../css/api.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+
+    <style>
+        .sl_bg {
+            height: 50%;
+        }
+        .sl_bg img {
+            width: 100px;
+            height: auto;
+        }
+        .sign_login_btn {
+            position: relative;
+        }
+        .sign_btn,
+        .login_btn {
+            width: 35%;
+            height: 50px;        
+        }
+    </style>
+</head>
+<body>
+        <div class="sl_bg"> <img src="../image/sl_start.png" alt=""> </div>
+        <div class="sign_login_btn sl_flex_sa">
+            <div class="sign_btn sl_skin">登录</div>
+            <div class="login_btn sl_skin">注册</div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>自选</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <style>
+         html,
+        body {
+            
+            background-color: #010646;
+            height: 100%;
+        }
+        body {
+            padding-top: 5px;
+        }
+           /* 新闻部分 */
+    .news_item {
+        position: relative;
+        padding: 10px;
+        height: 100px;
+        background-color: #111453;
+        margin-bottom: 10px;
+        box-sizing: content-box;
+    }
+    .news_item_l {
+        position: absolute;
+        left: 10;
+        height: 100%;
+        width: 50%;
+    }
+    .news_item_r {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 40%;
+    }
+    .news_item_r img {
+        height: 100%;
+        width: 100%;
+    }
+    .news_item_l_t {
+        position: absolute;
+        top: 0;
+        font-size: 14px;
+    }
+    .news_item_l_b {
+        position: absolute;
+        bottom: 10px;
+        font-size: 12px;
+        width: 100%;
+    }
+    .news_item_l_b .stock_name {
+        float: left;
+    }
+    .news_item_l_b .stock_pblish_time {
+        float: right;
+    }
+
+    </style>
+</head>
+
+<body>
+        <section class="news_template">
+                <div class="news_item">
+                    <div class="news_item_l">
+                        <div class="news_item_l_t">巨峰投顾：逆袭下A股能否走出自己的个性？</div>
+                        <div class="news_item_l_b">
+                            <div class="stock_name">巨峰投顾</div>
+                            <div class="stock_pblish_time">16:41</div>
+                        </div>
+                    </div>
+                    <div class="news_item_r">
+                        <img src="../image/stock_news_img.png" alt="">
+                    </div>
+                </div>
+                <div class="news_item">
+                    <div class="news_item_l">
+                        <div class="news_item_l_t">8月15日异动股点评：5G老妖股卷土重来 盘点四牛与四熊</div>
+                        <div class="news_item_l_b">
+                            <div class="stock_name">山东神光</div>
+                            <div class="stock_pblish_time">16:41</div>
+                        </div>
+                    </div>
+                    <div class="news_item_r">
+                        <img src="../image/stock_news_img.png" alt="">
+                    </div>
+                </div>
+                <div class="news_item">
+                    <div class="news_item_l">
+                        <div class="news_item_l_t">美股暴跌800点：衰退魔咒来了 特朗普急呼太疯狂！ 欧洲也出黑田野 全球市场惊魂未定</div>
+                        <div class="news_item_l_b">
+                            <div class="stock_name">山东神光</div>
+                            <div class="stock_pblish_time">16:41</div>
+                        </div>
+                    </div>
+                    <div class="news_item_r">
+                        <img src="../image/stock_news_img.png" alt="">
+                    </div>
+                </div>
+            </section>
+</body>
+
+</html>

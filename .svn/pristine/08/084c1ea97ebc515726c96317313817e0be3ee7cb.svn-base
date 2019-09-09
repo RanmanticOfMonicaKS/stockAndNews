@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>股票详情页</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+</head>
+<style>
+                html,
+    body {
+        background-color: #010646;
+    }
+    main {
+        padding: 0;
+    }
+    .sl_header i {
+        position: absolute;
+        top: 35px;
+        left: 20px;
+        font-size: 30px;
+        padding: 0 10px;
+    }
+    .sl_header_con {
+        width: 80px;
+        text-align: center;
+        line-height: 20px;
+        margin: 7px auto 0;
+    }
+    .stockName {
+        font-size: 18px;
+    }
+    .stockId {
+        font-size: 14px;
+    }
+
+    .stock_info {
+        padding-left: 10px;
+        clear: both;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .stock_info_scroll {
+        width: 110%;
+        height: 100%;
+    }
+    .stock_info_l {
+        width: 100px;
+        height: 80px;
+        text-align: center;
+        background-color: #fff;
+        line-height: 40px;
+        border-radius: 5px;
+    }
+    .stock_info_l h5 {
+        color:tomato;
+        font-weight: 700;
+        font-size: 20px;
+    }
+    .stock_info_l p {
+        font-size: 14px;
+        color:tomato;
+    }
+    .stock_info_l p>span {
+        font-size: 12px;
+        margin-left: 5px;
+    }
+    .stock_info_r  {
+        width: calc(100% - 100px);
+        display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        height: 100px;
+        flex-wrap: wrap;
+    }
+    .stock_info_r li {
+        flex: 1;
+        width: 30%;
+        height: 50px;
+        line-height: 20px;
+        margin-left: 15px;
+    }
+    .timeTab{
+        color:#020202;
+        margin-bottom: 20px;
+        background-color: #fff;
+    }
+    .timeTab >li {
+        padding-top: 5px;
+
+        padding-bottom: 5px;
+    }
+    .timeTab >li>span {
+        color:red;
+        font-size: 18px;
+    }
+    .timeTab >li.active {
+        border-bottom: 2px solid deeppink;
+    }
+    .chart {
+        padding-top: 10px;
+        background-color: #fff;
+        margin-bottom: 10px;
+    }
+    .chart_item  img {
+        width: 100%;
+        height: auto;
+    }
+    .chart_item h5 {
+        color:#FFBABA;
+        font-size: 18px;
+        padding-left: 20px;
+    }
+    .news_stock {
+        line-height: 30px;
+        background-color: #fff;
+        color:#000;
+        padding: 10px;
+    }
+    .news_stock p {
+        color:#666;
+    }
+    .news_stock_hd li {
+        font-weight: 700;
+        float: left;
+        margin-right: 20px;
+        padding-bottom: 3px;
+    }
+    .news_stock_hd li.active {
+        border-bottom: 2px solid deeppink;
+    }
+</style>
+<body>
+    <header class="sl_header">
+        <div class="sl_header_con">
+            <span class="stockName">深沪股</span>
+            <span class="stockId">1A0001</span>
+        </div>
+        <i class="fa fa-chevron-left" tapmode onclick="api.closeWin();"></i>
+    </header>
+    <main>
+        <div class="stock_info clearfix">
+            <div class="stock_info_l left">
+                <h5>2814.99</h5>
+                <p>
+                    <span>40.24</span>
+                    <span>+1.45%</span>
+                </p>
+            </div>
+            <div class="stock_info_scroll">
+                <ul class="stock_info_r right clearfix">
+                    <li>
+                        <h5>最高</h5>
+                        <p>2814.99</p>
+                    </li>
+                    <li>
+                        <h5>今开</h5>
+                        <p>2781.98</p>
+                    </li>
+                    <li>
+                        <h5>成交量</h5>
+                        <p>1.32亿</p>
+                    </li>
+                    <li>
+                        <h5>最低</h5>
+                        <p>2776.42</p>
+                    </li>
+                    <li>
+                        <h5>换手率</h5>
+                        <p>0.38%</p>
+                    </li>
+                    <li>
+                        <h5>总金额</h5>
+                        <p>1626.2亿</p>
+                    </li>
+                </ul>         
+            </div>
+        </div>
+        <ul class="timeTab sl_flex_sa">
+            <li class="active">分时</li>
+            <li>五日</li>
+            <li>日K</li>
+            <li>周K</li>
+            <li>月K</li>
+            <li>季K</li>
+            <li>年K</li>
+            <li>分钟</li>
+            <li><span class="fa fa-caret-down "></span></li>
+        </ul>
+        <div class="chart">
+            <div class="chart_item">
+                <h5> <span>均价：9.00</span>
+                <span>最新：9.05+0.18</span>
+                <span>+1.95%</span> </h5>
+                <img src="../image/stock_line_chart.png" alt="">
+            </div>
+            <div class="chart_item">
+                <h5>成交量：81.85万手</h5>
+                <img src="../image/stock_bar_graph.png" alt="">
+            </div>
+        </div>
+        <div class="news_stock">
+                <ul class="news_stock_hd clearfix">
+                    <li class="active">新闻</li>
+                    <li>股票信息</li>
+                </ul>
+                <ul class="news_stock_bd">
+                    <li>
+                        <div class="stockTitle">
+                            尾盘缘何跳水
+                        </div>
+                        <p class="stockCon">
+                            尾盘，各版块在金融股带领下联袂下挫，泸指瞬间下滑，截止收盘，泸指跌1.7%，报2627行股成为做空...<span>【详情】</span>
+                        </p>
+                        <div class="stockSubTitle">
+                            上证指数数日内涨幅达到0.50%，报2829.97
+                        </div>
+
+                    </li>
+                    <li>
+
+                    </li>
+                </ul>
+        </div>
+    </main>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/sl_stock_detail.js"></script>
+<script>
+    apiready = function(){
+        api.parseTapmode();
+        $api.fixStatusBar($api.dom('.sl_header'));
+        fixMainH();
+    }
+        
+</script>
+
+</html>

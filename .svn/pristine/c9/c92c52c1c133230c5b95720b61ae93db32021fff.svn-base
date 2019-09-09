@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新闻详情页</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+         html,
+    body {
+        background-color: #010646;
+    }
+    .sl_header_con {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-size: 25px;
+    }
+    .sl_header_con i {
+        position: absolute;
+        font-size: 30px;
+        color:#ccc;
+        left: 30px;
+        top: 9px;
+    }
+    h2 {
+        margin-bottom: 10px;
+    }
+    </style>
+</head>
+<body>
+        <header class="sl_header">
+                <div class="sl_header_con">
+                    今日要闻                   
+                    <i class="fa fa-chevron-left" tapmode onclick="api.closeWin();"></i>
+                </div>
+            </header>
+            <main>
+                <h2>今日股市上市提示：海能实业发行价格27.33元</h2>
+                <h5 class="clearfix"> <span class="news_publishTime left">2019-8-15 9:37:25</span> <span class="news_publishName right"> 东方财富网 </span> </h5>
+                <p class="news_content"></p>
+                <div class="stock_info">
+                        <div class="stock_info_item">
+                            <h5 class="baseinfo">基本信息</h5>
+                            <img src="../image/stock_info.png" alt="">
+                        </div>
+                        <div class="stock_info_item">
+                            <h5 class="coinfo">公司简介</h5>
+                            <img src="../image/Co_info.png" alt="">
+                        </div>
+                </div>
+            </main>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script>
+    apiready = function(){
+        api.parseTapmode();
+        $api.fixStatusBar($api.dom('.sl_header'));
+    }
+        
+</script>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>绑定手机</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+        html,
+        body {
+            background-color: #010646;
+        }    
+        main {
+            position: relative;
+            height: 100%;
+        } 
+        .bind_tips {
+            margin-bottom: 10px;
+        }
+        input[type="number"] {
+            display: inline-block;
+                width: 200px;
+                height: 40px;
+                border-radius: 20px;
+                border: 1px solid #fff;
+                margin-left: 10px;
+                padding-left: 20px;
+                color:#eee;
+        }
+        .input_box {
+            text-align: center;
+        }
+        
+input::-webkit-input-placeholder{
+    color:#eee;
+    font-size: 12px;
+}
+.submit_btn {
+position: absolute;
+width: 60%;
+left: 20%;
+bottom: 120px;
+}
+    </style>
+</head>
+
+<body>
+    <header class="sl_header">
+        <div class="center" tapmode>
+            <span>修改绑定手机</span>
+            <span class="fa fa-chevron-left " onclick="closeWin();" tapmode></span>
+        </div>
+    </header>
+    <main>
+
+        <p class="bind_tips">
+         更改手机后，下次登录请使用新绑定手机登录，当前手机号<span class="sl_uname">***********</span>
+        </p>
+        <div class="input_box">
+
+            +86 <input type="number" placeholder="请输入您本人的手机号" >
+        </div>
+        <div class="submit_btn sl_skin" tapmode onclick="clickSubmit();">下一步</div>
+    </main>
+</body>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script>
+    apiready = function () {
+        api.parseTapmode();
+        $api.fixStatusBar($api.dom('.sl_header'));
+        fixMainH();
+    }
+    const clickSubmit = () => {
+        let sl_uname = $('input').val();
+        if(!checkPhone(sl_uname)) {
+            return api.toast({
+                msg: '请您输入正确的手机号',
+                duration: 2000,
+                location: 'bottom'
+            });
+        }
+        api.toast({
+            msg: '验证码已发送至您手机，请查收',
+            duration: 2000,
+            location: 'bottom'
+        });
+        setTimeout(() => {
+            api.openWin({
+                name: 'sl_bindPhone_input',
+                url: 'sl_bindPhone_input.html',
+                bounces: false,
+                pageParam: {sl_uname},
+            });
+        },1000)
+    }
+</script>
+
+</html>

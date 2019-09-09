@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+        <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+        <title>首页</title>
+        <link rel="stylesheet" type="text/css" href="../css/api.css" />
+        <link rel="stylesheet" href="../css/aui.css">
+        <link rel="stylesheet" href="../css/sl_common.css">
+        <link rel="stylesheet" href="../css/font-awesome.min.css">
+    </head>
+    <style>
+            html,body {
+               background-color: #010646;
+           }
+           .sl_header {
+               text-align: center;
+               line-height: 54px;
+           }
+           .sl_header > li {
+               line-height: normal;
+               height: 100%;
+               line-height: 54px;
+           }
+           .sl_header > li.left {
+                position: absolute;
+                left: 20px;
+                z-index: 1;
+                padding: 0 10px;
+
+           }
+           .sl_header > li.right {
+                position: absolute;
+                right: 20px;
+                z-index: 1;
+                padding: 0 10px;
+           }
+           .sl_header >li.center {
+               position: absolute;
+               left: 50%;
+               transform: translate(-50%,0);
+               
+           }
+           .sl_header>li.active >span{
+               border-bottom: 2px solid tomato;
+           }
+       </style>
+<body>
+    <ul class="sl_header">
+        <li class="left active" tapmode ><span>资讯</span></li>
+        <li class="center" tapmode ><span>快报</span></li>
+        <li class="right" tapmode ><span>自选</span></li>
+    </ul>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/sl_main.js"></script>
+<script src="../script/plugins/swiper.min.js"></script>
+<script src="../script/sl_news.js"></script>
+<script>
+    const frameGroup = ['sl_news_default','sl_news_fast_fm','sl_news_mine'];
+
+    apiready = function(){
+        api.parseTapmode();
+         $api.fixStatusBar($api.dom('.sl_header'));
+         let headerH = $api.offset($api.dom('.sl_header')).h;
+        $api.setStorage('headerH', headerH);
+        let index = $api.getStorage('main_index'); 
+        console.log(JSON.stringify(index));
+        openwhichFm(0);
+        swithNewsGroup();
+    }
+        
+</script>
+</html>

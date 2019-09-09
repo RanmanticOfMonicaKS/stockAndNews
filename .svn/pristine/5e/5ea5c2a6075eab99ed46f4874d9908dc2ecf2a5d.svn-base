@@ -1,0 +1,128 @@
+
+
+body,
+html {
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  line-height: 20px;
+  color:#fff;
+}
+
+label {
+  font-size: 18px;
+}
+
+/* 底部导航栏 */
+.sl_footer  {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 54px;
+  background-color: #01042D;
+  line-height: 20px;
+}
+.sl_footer li  {
+  width: 25%;
+  text-align: center;
+  color:#fff;
+}
+
+.sl_footer li > span {
+  font-size: 20px;
+}
+.sl_footer li.active >span,
+.sl_footer li.active >p  {
+  color:deeppink;
+}
+
+main {
+  background-color: #010646;
+  padding: 10px;
+}
+.sl_header {
+  height: 54px;
+  position: relative;
+  line-height: 54px;
+
+}
+/* 分割线 */
+.sl_hr {
+  height: 5px;
+  background-color: #111453;
+  margin-bottom: 20px;
+}
+/* 主体渐变色 */
+.sl_skin {
+  background-image: linear-gradient(90deg, #fccb90 0%, #d57eeb 100%);
+  height: 50px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.sl_flex_sb,
+.sl_flex_sa,
+.sl_flex_c {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.sl_flex_c {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  flex-direction:row;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.sl_flex_1 {
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-shrink: 1;
+  flex-shrink: 1;
+}
+
+
+.sl_flex_sb {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  flex-direction:row;
+  -webkit-flex-direction:row;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.sl_flex_sa {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-around;
+  flex-direction:row;
+  -webkit-flex-direction:row;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+/* 分栏标题 */
+.sl_title {
+  border-left: 3px solid #fff;
+  font-size: 20px;
+  padding: 5px 0 0px 10px;
+  margin-bottom: 10px;
+}
+.sl_news_template {
+  padding: 5px;
+}
+.sl_news_template .sl_news_item {
+  margin-bottom: 10px;
+  background-color: #111453;
+  height: 100px;
+  line-height: 20px;
+}

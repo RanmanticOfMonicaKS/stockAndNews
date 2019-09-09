@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>双利股票</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <style>
+       
+    </style>
+</head>
+<body class="wrap">
+    
+</body>
+<script type="text/javascript" src="./script/api.js"></script>
+<script src="./script/plugins/jquery.min.js"></script>
+<script src="./script/common.js"></script>
+<script src="./script/index.js"></script>
+<script>
+    apiready = function(){
+        api.setStatusBarStyle({
+            style: 'light',
+            color:'rgba(0,0,0,.1)'
+        });
+        rootToEixt();
+        LoginOrNot() ? goToMain() : goToSign_login();
+        
+    }
+    
+</script>
+
+</html>

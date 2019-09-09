@@ -1,0 +1,41 @@
+//1. 点击图标，进入user页面
+const sl_user  = () => {
+    api.openWin({
+        name: 'sl_user',
+        url: 'sl_user.html',
+        bounces: false,
+    });
+}
+
+// 2. 点击搜索进入搜索界面 
+const home_search = () => {
+    $('.sl_search').on('click',function(e){
+        api.openWin({
+            name: 'home_search',
+            url: 'home_search.html',
+            bounces: false,
+            pageParam: {key : 'value'}
+        });
+        return false;
+    })
+    
+}
+
+// 3.为股票简报部分添加点击事件 应为自选部分
+const clickSimpleStockInfo = () => {
+    $('.stock_info_item').on('click',function(){
+      let id =   $(this).data('index');
+        api.openFrame({
+            name: 'sl_stock_detail',
+            url: 'sl_stock_detail.html',
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            },
+            pageParam:{id},
+        });
+    })
+
+}

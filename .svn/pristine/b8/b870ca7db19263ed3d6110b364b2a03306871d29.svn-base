@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+</head>
+<style>
+        html,
+    body {
+        background-color: #010646;
+    }
+    body {
+        padding-top: 10px;
+    }
+    .sl_header>.center {
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        text-align: center;
+        font-size: 18px;
+    }
+    .center>span.fa {
+        position: absolute;
+        top: 50%;
+        left: 30px;
+        transform: translate(0, -50%);
+        color: #B1B1BC;
+        font-size: 30px;
+    }
+    .sl_userInfo li {
+        background-color: #;
+    }
+
+</style>
+<body>
+    <header class="sl_header">
+        <div class="center" tapmode>
+            <span>个人设置</span>
+            <span class="fa fa-chevron-left " onclick="" tapmode></span>
+        </div>      
+    </header>
+    <ul class="sl_userInfo">
+        <li class="sl_user_touxiang">
+            <div class="sl_touxiang_img"></div>
+            <div class="update_info"></div>
+        </li>
+        <li class="sl_user_nickname">
+            <div class="left"></div><div class="right"></div>
+        </li>
+        <li class="sl_user_sex">
+                <div class="left"></div>
+                <div class="right">
+                    <div class="sex_icon_choose">
+                        <span></span><span></span>
+                        
+                    </div>
+                    <span class="sex_text">女</span>
+                </div>
+        </li>
+    </ul>
+</body>
+</html>

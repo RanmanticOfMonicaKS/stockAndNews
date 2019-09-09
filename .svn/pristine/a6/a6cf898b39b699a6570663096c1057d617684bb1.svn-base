@@ -1,0 +1,11 @@
+// 1. 判断用户是否登录 
+const LoginOrNot = ()=> {
+    //同步返回结果：
+    let sl_uInfo =  api.getPrefs({
+        sync: true,
+        key: 'sl_uInfo',
+    }) || {};
+    let bool = sl_uInfo.sl_uname ? true : false;
+    return bool;
+}
+

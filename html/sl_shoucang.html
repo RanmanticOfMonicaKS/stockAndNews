@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的收藏</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+        html,
+        body {
+            background-color: #010646;
+        }
+
+        .news_item_top,
+        .news_item_mid,
+        .news_item_btm {
+            margin-bottom: 10px;
+        }
+
+        .news_item_mid {
+            height: 20px;
+        }
+
+
+        .item_publish_name {
+            float: left;
+        }
+
+        .item_publish_time {
+            float: right;
+        }
+
+        .sl_news_item {
+            position: relative;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="sl_header">
+        <div class="center" tapmode>
+            <span>我的收藏</span>
+            <span class="fa fa-chevron-left " onclick="closeWin();" tapmode></span>
+        </div>
+    </header>
+
+    <div class="sl_news_template">
+
+    </div>
+</body>
+<script id="sl_news_template" type="text/template">
+    {{~ it:value:index}}
+    <div class="sl_news_item" tapmode data-index="{{= value.id}}">
+            <div class="news_item_top"> {{= value.newstitle}} </div>
+            <div class="news_item_mid"> {{= value.newssubtitle}} </div>
+            <div class="news_item_btm clearfix">
+                <div class="item_publish_name">{{= value.newspublishname}} </div>
+                <div class="item_publish_time"> {{= value.newspublishtime}} </div>
+            </div>
+        </div>
+        {{~}}
+</script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script>
+    apiready = function () {
+        api.parseTapmode();
+        $api.fixStatusBar($api.dom('.sl_header'));
+        fixMainH();
+
+        shoucangTemp();
+        clickNewsItem();
+    }
+
+    const shoucangTemp = () => {
+        let tempData = $api.getStorage('newsInfo') || [];
+        if (tempData.length === 0) {
+            return api.toast({
+                msg: '暂无数据~',
+                duration: 2000,
+                location: 'bottom'
+            });
+        }
+        tempData = tempData.filter(item => item.newssc=='1');
+        sl_temp('sl_news_template', tempData);
+    }
+
+    const clickNewsItem =() => {
+        $('.sl_news_template').on('click','.sl_news_item',function(){
+          let id =  $(this).data('index');
+          toDetailNews(id);
+        })
+    }
+</script>
+
+</html>

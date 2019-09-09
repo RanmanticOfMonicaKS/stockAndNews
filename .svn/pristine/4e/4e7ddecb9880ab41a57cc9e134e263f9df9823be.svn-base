@@ -1,0 +1,45 @@
+// 1. 打开framegroup
+const openChildGroup = () => {
+    // 获取头部高度
+    let headerH  = $api.offset($api.dom('.sl_header')).h;
+    let footerH  = _syncPrefs('footerH');
+    api.openFrameGroup({
+        name: 'news_group',
+        scrollEnabled: false,
+        rect: {
+            x:0,
+            y:headerH,
+            w:'auto',
+            marginBottom:footerH,
+        },
+        index: 0,
+        frames: [{
+            name: 'news_default', 
+            url: 'news_default.html'
+        },{
+            name: 'news_fast', 
+            url: 'news_fast.html'
+        },
+        {
+            name: 'news_mine', 
+            url: 'news_mine.html'
+        }]
+    }, function(ret, err){
+        _setPrefs('news_group','true');
+        var name  = ret.name;
+        var index = ret.index;
+    });
+} 
+
+// 2. 切换tab栏
+const swithNewsGroup = () => {
+    $('.sl_header>li').on('click',function(){
+        let index =$(this).index();
+        $(this).addClass('active').siblings().removeClass('active');
+        api.setFrameGroupIndex({
+            name: 'news_group',
+            index,
+            scroll: true,
+        });
+    }) 
+}

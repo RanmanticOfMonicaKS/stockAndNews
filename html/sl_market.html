@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>行情</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+</head>
+<style>
+    html,
+    body {
+        background-color: #010646;
+    }
+    main {
+        padding: 0;
+    }
+    .sl_header_con {
+        position: absolute;
+        bottom: 3px;
+        left: 10px;
+        right: 10px;
+        height: 30px;
+        padding: 0 5px;
+        line-height: 30px;
+
+    }
+
+    .sl_search {
+        float: left;
+        width: 70%;
+        height: 100%;
+        border-radius: 15px;
+    }
+
+    .sl_header_con span {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        top: 0;
+        right: 20px;
+        font-size: 22px;
+        padding-top: 4px;
+        color: #666;
+    }
+
+    .sl_header_con .sl_header_user {
+        float: right;
+        color: #7ABFFF;
+        font-size: 22px;
+        padding-top: 4px;
+    }
+
+    /* 热门股票 */
+    .hotStock,
+    .redStock {
+        font-size: 20px;
+        background-color: #111453;
+    }
+
+    .redStock_hd {
+        position: relative;
+        padding: 20px 0px;
+        border-left: 5px solid #fff;
+        background-color: #010646;
+    }
+
+    .hotStock_hd {
+        padding: 10px 0;
+    }
+
+    .redStock_hd>i,
+    .hotStock_hd>i {
+        margin-left: 10px;
+    }
+
+    .redStock_more {
+        position: absolute;
+        right: 3px;
+        bottom: 3px;
+        font-size: 16px;
+    }
+
+    .hotStock_bd {
+        padding: 10px;
+    }
+    .redStock_bd {
+        background-color: #010646;
+    }
+    .hotStock_icon,
+    .redStock_icon {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-size: cover;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        vertical-align: middle;
+    }
+
+    .sl_stock_name {
+        color: #1a2a3a;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .sl_stock_price,
+    .sl_stock_rise {
+        color: red;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .sl_stock_price {
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .hotStock_icon {
+        background-image: url('../image/fire.png');
+    }
+
+    .redStock_icon {
+        background-image: url('../image/zan.png');
+    }
+
+    .hotStock_bd {
+        height: 200px;
+        flex-wrap: wrap;
+    }
+
+    .hotStock_item {
+        width: 20%;
+        height: 100%;
+        border-radius: 5px;
+        line-height: 25px;
+        margin-right: 20px;
+        background-image: linear-gradient(to bottom, #fff, pink);
+        height: 80px;
+    }
+
+    .sl_red {
+        padding-top: 3px;
+        background-image: linear-gradient(to bottom, #fff, pink);
+    }
+
+    .sl_green {
+        padding-top: 3px;
+        background-image: linear-gradient(to bottom, #fff, lightgreen);
+    }
+
+    .sl_market_hr {
+        height: 10px;
+        border-left: 5px solid #fff;
+        background-color: #010646;
+    }
+
+    /* redStock */
+    .sl_redStock_item {
+        position: relative;
+        padding: 10px;  
+        background-color: #111453;
+        font-size: 14px;
+        height: 100px;
+    }
+    .news_item_top,
+    .news_item_mid, 
+    .news_item_btm {
+        margin-bottom: 15px;
+    }
+    .news_item_top {
+        font-size: 18px;
+    }
+    .news_item_mid {
+        height: 20px;
+        float: right;
+        width: 100%;
+    }
+    .news_item_mid > span {
+        float: right;
+        margin-right: 10px;
+    }
+
+    
+    .item_publish_name {
+        float: left;
+    }
+    .item_publish_time {
+        float: right;
+    }
+</style>
+
+<body>
+    <header class="sl_header">
+        <div class="sl_header_con">
+            <span class="fa fa-search"></span>
+        </div>
+    </header>
+    <main>
+            <section class="sl_market_hr"></section>
+    <section class="hotStock">
+        <div class="hotStock_hd">
+            <i class="hotStock_icon"></i><i>热门股票</i>
+        </div>
+        <div class="hotStock_bd sl_flex_sb">
+            <!-- <div class="hotStock_item">
+                <div class="sl_stock_name">深沪股</div>
+                <div class="sl_stock_price">2999.8</div>
+                <div class="sl_stock_rise">+20.5%</div>
+            </div>
+            <div class="hotStock_item">
+                <div class="sl_stock_name">深沪股</div>
+                <div class="sl_stock_price">2999.8</div>
+                <div class="sl_stock_rise">+20.5%</div>
+            </div>
+            <div class="hotStock_item">
+                <div class="sl_stock_name">深沪股</div>
+                <div class="sl_stock_price">2999.8</div>
+                <div class="sl_stock_rise">+20.5%</div>
+            </div>
+            <div class="hotStock_item">
+                <div class="sl_stock_name">深沪股</div>
+                <div class="sl_stock_price">2999.8</div>
+                <div class="sl_stock_rise">+20.5%</div>
+            </div>
+            <div class="hotStock_item">
+                <div class="sl_stock_name">深沪股</div>
+                <div class="sl_stock_price">2999.8</div>
+                <div class="sl_stock_rise">+20.5%</div>
+            </div>
+            <div class="hotStock_item">
+                <div class="sl_stock_name">深沪股</div>
+                <div class="sl_stock_price">2999.8</div>
+                <div class="sl_stock_rise">+20.5%</div>
+            </div> -->
+        </div>
+    </section>
+    <section class="redStock">
+        <div class="redStock_hd">
+            <i class="redStock_icon"></i><i>牛股</i>
+            <div class="redStock_more" tapmode onclick="toMoreRedStock();">
+                更多 <i class="fa fa-ellipsis-h "></i>
+            </div>
+        </div>
+        <div class="redStock_bd">
+            <!-- <div class="sl_redStock_item">
+                <div class="news_item_top">人民同泰</div>
+                <div class="news_item_mid"><span class="rise_percent"> 10.08%</span> <span class="rise_num">6.88</span></div>
+                <div class="news_item_btm">
+                    <div class="item_publish_name">60829</div>
+                    <div class="item_publish_time"></div>
+                </div>
+            </div>
+            <div class="sl_fenge"></div>
+            <div class="sl_redStock_item">
+                <div class="news_item_top">同达创业</div>
+                <div class="news_item_mid"><span class="rise_percent"> 10.01%</span> <span class="rise_num">6.88</span></div>
+                <div class="news_item_btm">
+                    <div class="item_publish_name">60829</div>
+                    <div class="item_publish_time"></div>
+                </div>
+            </div>
+            <div class="sl_fenge"></div>
+            <div class="sl_redStock_item">
+                <div class="news_item_top">维科技术</div>
+                <div class="news_item_mid"><span class="rise_percent"> 10.02%</span> <span class="rise_num">19.64</span></div>
+                <div class="news_item_btm">
+                    <div class="item_publish_name">60829</div>
+                    <div class="item_publish_time"></div>
+                </div>
+            </div>
+            <div class="sl_fenge"></div> -->
+        </div>
+    </section>
+    </main>
+
+</body>
+<script id="hotStock_bd" type="text/template">
+    {{~ it:value:index}}
+<div class="hotStock_item" data-index="{{= value.id}}" tapmode>
+                <div class="sl_stock_name">{{= value.stockname}}</div>
+                <div class="sl_stock_price">{{= value.stockcurrentprice}} </div>
+                <div class="sl_stock_rise">{{= value.stockriseprecent}} </div>
+            </div>
+            {{~}}
+</script>
+<script id="redStock_bd" type="text/template">
+    {{~ it:value:index}}
+    <div class="sl_redStock_item" tapmode data-index="{{= value.id}}">
+        <div class="news_item_top">{{= value.stockname}} </div>
+        <div class="news_item_mid"><span class="rise_percent"> {{= value.stockriseprice}}</span> <span class="rise_num">6.88</span></div>
+        <div class="news_item_btm">
+            <div class="item_publish_name">{{= value.stockid}}</div>
+            <div class="item_publish_time"></div>
+        </div>
+    </div>
+    <div class="sl_fenge"></div>
+    {{~}}
+</script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/sl_market.js"></script>
+<script>
+    apiready = function(){
+        $api.fixStatusBar($api.dom('.sl_header'));
+        fixMainH();
+        marketRedStock();
+        marketHotStock();
+        clickRedStockInfo();
+        clickHotStockInfo();
+        $('.sl_header_con>span.fa').on('click',function(){
+            api.openWin({
+                name: 'home_search',
+                url: 'home_search.html',
+            });
+        })
+    }
+        
+</script>
+</html>

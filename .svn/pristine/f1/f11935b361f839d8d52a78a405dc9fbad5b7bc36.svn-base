@@ -1,0 +1,71 @@
+// 1.打开framegroup
+const sl_frameGroup = () => {
+    let footerH = $api.offset($api.dom('.sl_footer')).h;
+    _setPrefs('footerH',footerH);
+    api.openFrameGroup({
+        name: 'sl_group',
+        scrollEnabled: false,
+        rect: {
+            x:0,
+            y:0,
+            w:'auto',
+            marginBottom:footerH,
+        },
+        index: 0,
+        frames: [{
+            name: 'sl_home', 
+            url: 'sl_home.html'
+        },{
+            name: 'sl_market', 
+            url: 'sl_market.html'
+        },{
+            name: 'sl_news', 
+            url: 'sl_news.html'
+        },{
+            name: 'sl_mine', 
+            url: 'sl_mine.html'
+        }]
+    }, function(ret, err){
+        let name  = ret.name;
+        let index = ret.index;
+        
+    });
+}  
+
+// 2. 点击切换frame
+const sl_swithFrames = () => {
+    $('.sl_footer > li').on('click',function(){
+        let index = $(this).index();
+        console.log(JSON.stringify(index));
+        _setPrefs('main_index',index);
+        $(this).addClass('active').siblings('li').removeClass('active');
+        let news_exist = _syncPrefs('news_group');
+
+        if(index !== 2) {
+            api.setFrameGroupAttr({
+                name: 'news_group',
+                hidden: true
+            });
+        }  else {
+            
+           api.sendEvent({
+               name: 'news_show',
+           });
+        }
+        api.setFrameGroupIndex({
+            name: 'sl_group',
+            index,
+            scroll: false,
+        });
+
+        //  隐藏其他的frameGroup
+        api.setFrameGroupAttr({
+            name: 'news_group',
+            hidden: true
+        });
+        api.setFrameGroupAttr({
+            name: 'fast_group',
+            hidden: true
+        });
+    })
+} 

@@ -1,0 +1,83 @@
+//1. 获取数据并渲染
+const stockDetail = () => {
+   let tempData = $api.getStorage('stockInfo');
+   let tempData1 = $api.getStorage('newsInfo'); // 新闻加进来
+
+   console.log(JSON.stringify(tempData)+'-----所有数据'+JSON.stringify(tempData1));
+   let id = api.pageParam.id;
+   console.log(JSON.stringify(id));
+   tempData1 = tempData1.filter( item => item.id == id)[0];
+   tempData = tempData.filter(item => item.id == id)[0];
+   
+   $('.stockName').text(tempData.stockname);
+   $('.stockId').text(tempData.stockid)
+   tempData1.newscontent = tempData1.newscontent.substr(0,20)+'...'// 截取，新闻省略主体内容
+   tempData = Object.assign(tempData,tempData1);
+   console.log(JSON.stringify(tempData)+'-----模板数据');
+   sl_temp('stock_detail_temp',tempData);
+   
+}
+
+//2. 点击tab 切换 注册点击事件
+const clickTimeTab = ( ) => {
+   $('.stock_detail_temp').on('click','.timeTab>li',function(){
+      // 以下是图片处理
+      let index = 0;
+      let junjiaNum = '9.00';
+      let chengjiaoNum = $('.chengjiao').text();
+      index = $(this).index();
+      console.log(JSON.stringify(index));
+
+      let src1 = $('.chart_item:first>img').attr('src');
+      let src2 = $('.chart_item:last>img').attr('src');
+      console.log(JSON.stringify(src1));
+      src1 = src1.replace(/\d\./g,index+1+'.');
+      src2 = src2.replace(/\d\./g,index+1+'.');
+      $('.chart_item:first>img').attr('src',src1);
+      $('.chart_item:last>img').attr('src',src2);
+      console.log(JSON.stringify(src1));
+
+
+      //一下是数据处理
+      console.log(JSON.stringify(chengjiaoNum));
+      
+      let zuixinNum = '9.05+0.18';
+      zuixinNum  = zuixinNum.substr(0,7);
+      console.log(JSON.stringify(zuixinNum));
+      if(index === 0) {
+         index = 0;
+         junjiaNum = '9.00';
+         chengjiaoNum = '25.25'
+
+      }
+      chengjiaoNum = parseInt(chengjiaoNum) +parseInt(index)*10 +'.2'+index+'万手';
+      console.log(JSON.stringify(chengjiaoNum));
+      $('.chengjiao').text(chengjiaoNum);
+      zuixinNum = zuixinNum +parseInt(index)+'5';
+      $(this).addClass('active').siblings('li').removeClass('active');
+      // 改变均价和最新部分的数据
+      junjiaNum = parseFloat(junjiaNum);
+      console.log(JSON.stringify(junjiaNum));
+      junjiaNum = junjiaNum +'.1'+parseInt(index);
+      $('.junjia').text(junjiaNum);
+      $('.zuixin').text(zuixinNum);
+   })
+}
+
+// 3. 去新闻详情部分 
+const toNews = () => {
+   let id = api.pageParam.id;
+   console.log(JSON.stringify(id));
+   toDetailNews(id);
+}
+
+// 4. 切换新闻股票
+const switchNewsAndStock =  () => {
+   $('.stock_detail_temp').on('click','.news_stock_hd>li',function(){
+      let index = $(this).index();
+      console.log(JSON.stringify(index));
+      
+      $(this).addClass('active').siblings('li').removeClass('active');
+      $('.news_stock_bd>li').eq(index).show().siblings('li').hide();
+   })
+}

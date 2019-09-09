@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页-搜索</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+        html,
+        body {
+            background-color: #010646;
+        }
+
+        .sl_header_con {
+            position: relative;
+            height: 54px;
+            text-align: center;
+            line-height: 54px;
+        }
+
+        .sl_search_box {
+            width: 60%;
+            position: relative;
+        }
+
+        .sl_search {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #fff;
+            border-radius: 27px;
+            line-height: 40px;
+            padding-left: 35px;
+            color: #fff;
+        }
+
+        .sl_header_con>* {
+            display: inline-block;
+        }
+
+        .sl_search_box {
+            position: absolute;
+            top: 12px;
+            left: 50px;
+            color: #fff;
+        }
+
+        .sl_header_con .fa-chevron-left {
+            position: absolute;
+            left: 20px;
+            top: 12px;
+            font-size: 30px;
+        }
+
+        .sl_header_con .fa-search {
+            position: absolute;
+            top: 2px;
+            left: 10px;
+            font-size: 25px;
+            color: #666;
+        }
+
+        .sl_search_btn {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            border-radius: 3px;
+            background-color: #7ABFFF;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            right: 10px;
+            top: 12px;
+        }
+
+        .hot_stock,
+        .history_scan,
+        .hot_news {
+            padding: 5px 10px 20px 10px;
+            background-color: #111453;
+            margin-bottom: 10px;
+        }
+
+        .hot_stock h5,
+        .history_scan h5,
+        .hot_news h5 {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .history_scan .content,
+        .hot_news .content,
+        .hot_stock .content {
+            padding-top: 10px;
+        }
+
+        .history_scan .content>li {
+            float: left;
+            border: 1px solid #fff;
+            padding: 2px 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+        }
+
+        .hot_stock .content>li {
+            float: left;
+            border: 1px solid #fff;
+            padding: 2px 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+        }
+
+        input::-webkit-input-placeholder {
+            font-size: 12px;
+        }
+
+
+        .sl_stock_name {
+            color: #1a2a3a;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .sl_stock_price,
+        .sl_stock_rise {
+            color: red;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .sl_stock_price {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .hotStock_icon {
+            background-image: url('../image/fire.png');
+        }
+
+        .redStock_icon {
+            background-image: url('../image/zan.png');
+        }
+
+        .hotStock_bd {
+            height: 200px;
+            flex-wrap: wrap;
+        }
+
+        .hotStock_item {
+            width: 20%;
+            height: 100%;
+            border-radius: 5px;
+            line-height: 25px;
+            margin-right: 20px;
+            background-image: linear-gradient(to bottom, #fff, pink);
+            height: 80px;
+        }
+
+        .sl_red {
+            padding-top: 3px;
+            background-image: linear-gradient(to bottom, #fff, pink);
+        }
+
+        .sl_green {
+            padding-top: 3px;
+            background-image: linear-gradient(to bottom, #fff, lightgreen);
+        }
+
+        .sl_market_hr {
+            height: 10px;
+            border-left: 5px solid #fff;
+            background-color: #010646;
+        }
+
+        /* redStock */
+        .sl_redStock_item {
+            position: relative;
+            padding: 10px;
+            background-color: #111453;
+            font-size: 14px;
+            height: 100px;
+        }
+
+        .news_item_top,
+        .news_item_mid,
+        .news_item_btm {
+            margin-bottom: 15px;
+        }
+
+        .news_item_top {
+            font-size: 18px;
+        }
+
+        .news_item_mid {
+            height: 20px;
+            float: right;
+            width: 100%;
+        }
+
+        .news_item_mid>span {
+            float: right;
+            margin-right: 10px;
+        }
+
+
+        .item_publish_name {
+            float: left;
+        }
+
+        .item_publish_time {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="sl_header">
+        <div class="sl_header_con">
+            <i class="fa fa-chevron-left " tapmode onclick="api.closeWin();"></i>
+            <div class="sl_search_box">
+                <input class="sl_search " placeholder="请输入股票/股票代码/" />
+
+                <span class="fa fa-search"></span>
+            </div>
+            <botton class="sl_search_btn" tapmode onclick="serchBtn();">搜索</botton>
+        </div>
+    </header>
+    <main>
+        <section class="redStock_bd">
+
+        </section>
+        <section class="history_scan clearfix">
+            <!-- <ul class="content clearfix">
+                    <li>伊利股份</li>
+                    <li>康师傅股份</li>
+                    <li>贵州茅台</li>
+                    <li>工业副联</li>
+                    <li>阿里巴巴</li>
+            </ul> -->
+        </section>
+        <section class="hot_stock clearfix">
+            <!-- <ul class="content">
+                    <li>阿里巴巴</li>
+                    <li>玖富</li>
+                    <li>京东</li>
+                    <li>斗鱼</li>
+                    <li>比亚迪电子</li>
+                    <li>小米科技</li>
+            </ul> -->
+        </section>
+        <section class="hot_news clearfix">
+            <!-- <ul class="content">
+                        <li onclick="clickToNews(0)" tapmode>1. 小米Q2财报会逆袭吗</li>
+                        <li onclick="clickToNews(1)" tapmode>2. 英伟达Q2财报大超预期，你怎么看？</li>
+                        <li onclick="clickToNews(2)" tapmode>3. 阿里巴巴发财报，你看好吗？</li>                     
+                </ul> -->
+    </main>
+</body>
+<script id="history_scan" type="text/template">
+    <h5>最近浏览</h5>
+
+    <ul class="content">
+        {{~ it:value:index}}
+            <li data-index="{{= value.id}}" tapmode class="history_scan_item">{{= value.stockname}}</li>
+            {{~}}
+    </ul>
+
+</script>
+<script id="hot_stock" type="text/template">
+    <h5>热门股票</h5>
+
+    <ul class="content">
+        {{~ it:value:index}}
+            <li class="hot_stock_item" data-index="{{= value.id}}" tapmode>{{= value.stockname}} </li>
+           {{~}}
+    </ul>
+
+</script>
+<script id="hot_news" type="text/template">
+    <h5>热门话题</h5>
+
+    <ul class="content">
+            {{~ it:value:index}}
+            <li tapmode class="hot_news_item" data-index="{{= value.id}}">{{= value.id}}. {{= value.newstitle}}</li>
+                    {{~}}         
+    </ul>
+
+
+</script>
+
+<script id="redStock_bd" type="text/template">
+    {{~ it:value:index}}
+    <div class="sl_redStock_item" tapmode data-index="{{= value.id}}">
+        <div class="news_item_top">{{= value.stockname}} </div>
+        <div class="news_item_mid"><span class="rise_percent"> {{= value.stockriseprice}}</span> <span class="rise_num">6.88</span></div>
+        <div class="news_item_btm">
+            <div class="item_publish_name">{{= value.stockid}}</div>
+            <div class="item_publish_time"></div>
+        </div>
+    </div>
+    <div class="sl_fenge"></div>
+    {{~}}
+</script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script>
+    apiready = function () {
+        api.parseTapmode();
+        $api.fixStatusBar($api.dom('.sl_header'));
+        historyScan();
+        hotStock();
+        hotNews();
+        clickitemToDetail('.history_scan_item', 'stock');
+        clickitemToDetail('.hot_stock_item', 'stock');
+        clickitemToDetail('.hot_news_item', 'news');
+
+        $('.sl_search').on('change', function () {
+            console.log('change---------');
+            let val = $(this).val();
+            if (val.length === 0) {
+                $('.redStock_bd').remove();
+                $('main').html(
+                    '<section class="history_scan clearfix"></section>' +
+                    '<section class="hot_stock clearfix"></section>' +
+                    '<section class="hot_news clearfix"></section>'
+                );
+                hotStock();
+                historyScan();
+                hotNews();
+                clickitemToDetail('.history_scan_item', 'stock');
+                clickitemToDetail('.hot_stock_item', 'stock');
+                clickitemToDetail('.hot_news_item', 'news');
+
+            }
+        })
+
+    }
+    const historyScan = () => {
+        let tempData = $api.getStorage('stockInfo') || [];
+        if (tempData.length === 0) {
+            alert('暂无数据~~')
+        }
+        tempData = tempData.filter(item => item.stockscan == '1');
+        console.log(JSON.stringify(tempData));
+
+        sl_temp('history_scan', tempData);
+    }
+    const hotStock = () => {
+        let tempData = $api.getStorage('stockInfo') || [];
+        if (tempData.length === 0) {
+            alert('暂无数据~~')
+        }
+        tempData = tempData.filter(item => item.stockred == '1');
+        console.log(JSON.stringify(tempData));
+
+        sl_temp('hot_stock', tempData);
+    }
+    const hotNews = () => {
+        let tempData = $api.getStorage('newsInfo') || [];
+        if (tempData.length === 0) {
+            alert('暂无数据~~')
+        }
+        tempData = tempData.filter(item => item.newsred == '1');
+        console.log(JSON.stringify(tempData));
+
+        sl_temp('hot_news', tempData);
+    }
+
+    const clickitemToDetail = (cssP, type) => {
+        $(cssP).on('click', function () {
+            let id = $(this).data('index');
+            if (type === 'news') {
+                toDetailNews(id);
+            }
+            if (type === 'stock') {
+                toDetailStock(id);
+            }
+        })
+    }
+
+    // 点击按钮
+    const serchBtn = async () => {
+        let val = $('.sl_search').val();
+        let [stockId, stockName, data] = ['', '', {}];
+        if (Number(val)) {
+            stockId = Number(val) + '' // 跟后台数据类型对应;
+            console.log('1111');
+
+            data = {
+                body: {
+                    ks_param: {
+                        stockId,
+                    }
+                }
+            }
+        } else {
+            console.log('222222222');
+
+            stockName = val;
+            data = {
+                body: {
+                    ks_param: {
+                        stockName,
+                    }
+                }
+            }
+        }
+        let url = 'shuangli/getStockInfo.sl';
+        console.log(JSON.stringify(data));
+
+        let res = await myAjax(url, data);
+        let tempData = [];
+        console.log(JSON.stringify(res));
+        if (res.success && res.success.ks_param.total > 0) {
+            tempData = res.success.ks_param.records;
+        } else {
+            console.log('22222222222222');
+
+            return api.toast({
+                msg: '未能查询到你输入的相关内容结果...',
+                duration: 2000,
+                location: 'bottom'
+            });
+        }
+        $('main').html('<section class="redStock_bd"></section>');
+        sl_temp('redStock_bd', tempData);
+    }
+</script>
+
+</html>

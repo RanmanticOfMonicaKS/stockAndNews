@@ -1,0 +1,79 @@
+// 1. 验证表单功能
+const checkInput = ({sl_uname,sl_upwd}) => {
+    if(!sl_uname) return { err:true, errMsg:'手机号码不能为空...',errMarked:{ sl_uname } };
+    if(!(/^1[3456789]\d{9}$/.test(sl_uname))) return { err:true,errMsg:'您输入的手机号有误...',errMarked:{ sl_uname } };
+    if(!sl_upwd) return { err:true, errMsg:'密码不能为空...',errMarked:{ sl_upwd } };
+    return { success:true,successMsg:'验证成功' }
+} 
+
+// 2. 账号密码验证
+const checkUinfo = async ( {sl_uname,sl_upwd} ) => {
+    api.showProgress({
+        title: ' 正在验证',
+        text: ' 请稍后',
+        modal:  false
+    });
+    let url = 'shuangli/slLogin.sl';
+    let data = {
+        body:{
+            ks_param:{
+                sl_uname,
+                sl_upwd,
+            }
+        }
+    };
+    try {
+        api.hideProgress();
+        const res = await myAjax( url,data );
+        console.log(JSON.stringify(res));
+        if(res.failure) return { failure:true ,failureMsg:'网络出错，请稍后再试...'};
+        if(res.success) {
+            // 验证成功
+            return  { success:true,successRes:res.success.ks_param.records[0]};
+        } else {
+            return { failure:true,failureMsg:'您的账号或密码不正确...' };
+        }  
+        
+    } catch (err) {
+        alert('网络出错...')
+    }
+} 
+
+// 3. 处理验证完毕的结果
+const  signBtnClick = async () => {
+
+    let sl_uname = $('#sl_uname').val().trim();
+    let sl_upwd = $('#sl_upwd').val().trim();
+    console.log(JSON.stringify(sl_uname)+'-------'+JSON.stringify(sl_upwd));
+    let inputCheck = checkInput({ sl_uname,sl_upwd });
+    if(inputCheck.err)  {
+        let cssSelector =  Object.keys(inputCheck.errMarked)[0];
+        console.log(JSON.stringify(cssSelector));
+        $('.err_box').hide();
+        $('.'+cssSelector+' >.err_box').show().children('.err_box_msg').text(inputCheck.errMsg);
+        return;
+    }
+    let dataCheck  = await checkUinfo({sl_uname,sl_upwd});
+    if(dataCheck.success) {
+        console.log(JSON.stringify(dataCheck));
+        $api.setStorage('sl_uInfo', dataCheck.successRes);
+        api.toast({
+            msg: '恭喜! 登录成功...',
+            duration: 2000,
+            location: 'bottom'
+        });
+        setTimeout(() => {
+            api.openFrame({
+                name: 'sl_main',
+                url: 'sl_main.html',
+                bounces: true,
+                rect: {
+                    x: 0,
+                    y: 0,
+                    w: 'auto',
+                    h: 'auto'
+                }
+            });
+        }, 300);
+    }
+} 

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" href="../css/api.css">
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <title>登录页</title>
+    <style>
+        .sl_register_conten {
+            position: absolute;
+            top: 20%;
+            left: 0;
+            height: 60%;
+            width: 80%;
+            margin-left: 10%;
+        }
+
+        .sl_register_conten .sl_logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            background: url('../image/sl_logo.png');
+            background-size: 100px 100px;
+            margin-bottom: 20px;
+        }
+
+        .sl_welcome {
+            margin-bottom: 50px;
+            visibility: hidden;
+        }
+
+        .sl_welcome .sl_welcome_title {
+            color: transparent;
+            background-image: linear-gradient(90deg, #fccb90 0%, #d57eeb 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .sl_welcome .sl_welcome_con {
+            font-size: 18px;
+
+        }
+
+        .register_box {
+            margin-bottom: 50px;
+        }
+
+        .register_box li {
+            overflow: hidden;
+            position: relative;
+            border-bottom: 1px solid #aaa;
+            margin-bottom: 20px;
+            height: 2.2rem;
+            line-height: 2.2rem;
+        }
+
+        .register_box li input {
+            width: 100px;
+        }
+
+        .register_box li>label {
+            display: block;
+            height: 2.2rem;
+            line-height: 2.2rem;
+            color: #424242;
+            font-size: 20px;
+        }
+
+        .register_box li>input,
+        .register_box li>label {
+            float: left;
+        }
+
+        .register_box .sl_yzm_box {
+            float: right;
+            width: 80px;
+            height: 100%;
+        }
+
+        .register_box .sl_yzm_btn {
+            width: 80px;
+            height: 30px;
+            background-color: #7ABFFF;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 14px;
+            vertical-align: middle;
+            line-height: 30px;
+        }
+
+        .register_box li.last {
+            border: 0;
+            padding: 10px;
+        }
+
+        .register_btn {
+            width: 80%;
+            margin: 0 auto;
+
+        }
+        input::-webkit-input-placeholder {
+            font-size: 14px;
+            color:#666;
+        }
+        input {
+            width: 200px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="sl_register_conten">
+        <div class="sl_logo"></div>
+
+        <ul class="register_box">
+            <li class="sl_uname">
+                <input type="password" name="sl_pwd1" id="sl_pwd1" placeholder="第一次输入密码" >
+            </li>
+            <li class="sl_uname">
+                  <input type="password" name="sl_pwd2"  id="sl_pwd2" placeholder="第二次输入密码">
+                </li>
+              
+        </ul>
+        <div class="register_btn sl_skin" tapmode onclick="queRenbtn();">
+            确认
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/aui-toast.js"></script>
+<script src="../script/common.js"></script>
+<script>
+    let type = '';
+    const toast = new auiToast();
+    apiready = function(){
+        api.parseTapmode();
+        type = api.pageParam.type;
+        console.log(JSON.stringify(type));
+        
+    }
+        const queRenbtn =async () => {
+            api.showProgress({
+                title: ' 正在检测密码设置',
+                text: ' 请稍后...',
+                modal:  true
+            });
+            
+          let pwd1 =   $('#sl_pwd1').val();
+          let pwd2 =   $('#sl_pwd2').val();
+            if(pwd1 === pwd2) {
+                let sl_uname = api.pageParam.sl_uname;
+                let sl_upwd = pwd1;
+                console.log(JSON.stringify(sl_uname)+'----'+JSON.stringify(sl_upwd));
+                let url = '';
+                let msg = '';
+                if(type === '注册账号') {
+                    url = 'shuangli/slAddUser.sl';
+                    msg = '注册成功！'
+                } else if(type === '忘记密码') {
+                    url = 'shuangli/slEditUtb.sl';
+                    msg = '密码重置成功！';
+                }
+                let data = {
+                    body:{
+                        tbname:'sl_u_tb',
+                        sl_uname,
+                        sl_upwd,
+                    }
+                }
+                console.log(JSON.stringify(url)+'-----'+JSON.stringify(data));
+                try {
+                    
+                    let res  = await myAjax(url,data);
+                    console.log(JSON.stringify(res));
+                    if(res.success && res.success.status==1) {
+                        let sl_uInfo = { sl_uname,sl_upwd };
+                        $api.setStorage('sl_uInfo', sl_uInfo);
+                        api.toast({
+                            msg,
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        rootToEixt();
+                        setTimeout(() => {
+                            api.openFrame({
+                                name: 'sl_main',
+                                url: 'sl_main.html',
+                                rect: {
+                                    x: 0,
+                                    y: 0,
+                                    w: 'auto',
+                                    h: 'auto'
+                                }
+                            });
+                        }, 1000);
+                    }
+                } catch (error) {
+                    
+                }
+                
+            } else {
+                toast.warning({
+                    title:'验证码错误或已过期！'
+                })
+            }
+        }
+</script>
+
+</html>

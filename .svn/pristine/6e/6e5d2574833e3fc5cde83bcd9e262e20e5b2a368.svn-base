@@ -1,0 +1,36 @@
+let baseUrl = 'http://192.168.3.206:8080/';
+
+// 1. 判断用户是否登录 
+const LoginOrNot = ()=> {
+    //同步返回结果：
+    let sl_uInfo =  api.getPrefs({
+        sync: true,
+        key: 'sl_uInfo',
+    }) || {};
+    let bool = sl_uInfo.sl_uname ? true : false;
+    return bool;
+}
+
+// 2. 封装ajax为async 函数
+const myAjax = async (url,data) => {
+    
+    api.ajax({
+        url:baseUrl+ url,
+        method:'post',
+        timeout:'30',
+        dataType:'json',
+        returnAll:false,
+        data,
+    },function(ret,err){
+        if (ret) {
+            // TODO 
+            console.log(JSON.stringify(ret));
+            let success = ret;
+            return 'success';
+        } else {
+            let failure = err;
+            return 'failure';
+        };
+    });
+
+}

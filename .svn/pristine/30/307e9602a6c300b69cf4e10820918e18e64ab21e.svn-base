@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的收藏</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+        html,
+        body {
+            background-color: #010646;
+        }
+
+        h5 {
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #eee;
+            font-size: 14px;
+        }
+
+        .category {
+            margin-bottom: 10px;
+        }
+
+        .category li {
+            width: 100px;
+            height: 30px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 5px;
+            color: #3a4a5a;
+        }
+
+        .category_item.active {
+            background-color: #93D4FD;
+
+            color: #fff;
+        }
+
+        .fankui_input_box {
+            position: relative;
+            width: 100%;
+            height: 200px;
+        }
+
+        .fankui_input {
+            width: 100%;
+            color: #3a4a5a;
+            height: 200px;
+            background-color: #fff;
+            box-shadow: 1px 1px 5px #999 inset;
+            padding: 30px 10px 10px 10px;
+            margin-bottom: 10px;
+        }
+
+        .tips {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            color: #ccc;
+        }
+
+        .upimg {
+            margin-top: 10px;
+        }
+
+        .upimg h5 {
+            margin-bottom: 10px;
+        }
+
+        .upimg h5>span {
+            color: #eee;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .upimg_btn {
+            position: relative;
+            width: 100px;
+            padding: 5px;
+            background-color: #fff;
+            height: 100px;
+            margin-bottom: 80px;
+        }
+
+        .upimg_btn .div_h {
+            width: 100%;
+            height: 50%;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .upimg_btn .div_v {
+            position: absolute;
+            top: 5px;
+            right: 0;
+            width: 50%;
+            height: 90px;
+            border-left: 2px solid #ccc;
+        }
+        .input_img {
+            margin-left: 20px;
+            width: 200px;
+            height: 50px;
+        }
+        .input_img  li {
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+        }
+        .input_img  li >img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="sl_header">
+        <div class="center" tapmode>
+            <span>意见反馈</span>
+            <span class="fa fa-chevron-left " onclick="closeWin();" tapmode></span>
+        </div>
+    </header>
+    <main>
+        <section class="top">
+            <h5 class="top_hd">意见与建议</h5>
+            <p class="top_bd">欢迎您对本产品提出问题，根据您提出的问题反馈，我们的产品经理会根据实际情况做出修改。</p>
+        </section>
+        <section class="content">
+            <h5 class="content_hd"></h5>
+            <ul class="category sl_flex_sb">
+                <li class="category_item" tapmmode data-type="1">功能与异常</li>
+                <li class="category_item" tapmmode data-type="2">建议</li>
+                <li class="category_item" tapmmode data-type="3">其他</li>
+            </ul>
+            <div class="fankui_input_box">
+                <div class="tips">请输入您想反馈的问题类型 <span>(<i class="currentSize">0</i>/200)</span></div>
+                <textarea name="" id="" cols="30" rows="10" placeholder="" class="fankui_input">
+                </textarea>
+
+            </div>
+        </section>
+        <section class="upimg  clearfix">
+            <h5>上传照片<span>(最多三张)</span></h5>
+            <div class="upimg_btn left">
+                <div class="div_h"></div>
+                <div class="div_v"></div>
+            </div>
+            <ul class="left input_img sl_flex_sb clearfix">
+                <li class="input_img_item marked"><img src="" alt=""></li>
+                <li class="input_img_item marked"><img src="" alt=""></li>
+                <li class="input_img_item marked"><img src="" alt=""></li>
+            </ul>
+        </section> 
+        <section class="submit_btn sl_skin" tapmode onclick="submit_btn();">
+            提交
+        </section>
+
+    </main>
+</body>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script>
+    let type = '1';
+    apiready = function () {
+        api.parseTapmode();
+        $api.fixStatusBar($api.dom('.sl_header'));
+        fixMainH();
+        clickCategory();
+        listenInput();
+        upimgBtn();
+    }
+    const clickCategory = () => {
+
+        $('.category_item').on('click', function () {
+            $(this).addClass('active').siblings('li').removeClass('active');
+             type = $(this).data('type');
+            console.log(JSON.stringify(type));
+
+        })
+    }
+    // 监听输入框
+    const listenInput = () => {
+        $('.fankui_input').on('input', function () {
+            console.log('触发input~~~~~~~~~~~~~~~~~~~~');
+
+            let text = $(this).val();
+            console.log(JSON.stringify(text));
+
+            let textL = text.length;
+            $('.currentSize').text(textL);
+            if (textL >= 199) {
+                $('.currentSize').css({
+                    "color": "red"
+                })
+                $(this).val(text.substr(0, 200));
+            } else {
+                $('.currentSize').css({
+                    "color": "#ccc"
+                })
+            }
+        })
+    }
+
+    // 点击打开相册
+    const upimgBtn = () => {
+        $('.upimg').on('click', function () {
+
+            api.getPicture({
+            sourceType: 'libray',
+            
+			encodingType: 'jpg',
+			mediaValue: 'pic',
+			destinationType: 'base64',
+            allowEdit: true,
+            targetWidth:50,
+            targetHeight:50,
+			quality: 100,
+			saveToPhotoAlbum: false
+		}, function (ret, err) {
+			if (ret) {
+
+                alert(JSON.stringify(ret));
+                if(ret.base64Data) {
+                    $('.marked').eq(0).css({ "border":"1px solid #ccc" });
+                   $('.marked>img')[0].src = ret.base64Data;
+                   $('.marked').eq(0).removeClass('marked');
+                   
+                }
+                if(!$('.marked')) {
+                    return api.toast({
+                        msg: '最多上传3张图片哦',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                }
+			} else {
+				alert(JSON.stringify(err));
+			}
+		});
+        })
+    }
+
+    const submit_btn =async () => {
+        api.showProgress({
+            title: '正在提交',
+            text: ' 请稍后',
+            modal:  true
+        });
+        let userId = ($api.getStorage('sl_uInfo') || {})['id'];
+        console.log(JSON.stringify(userId));
+        
+        let fkText = $(".fankui_input").val();
+        
+        let img1 = $('.input_img_item>img').eq(0)[0].src;
+        let img2 = $('.input_img_item>img').eq(1)[0].src;
+        let img3 = $('.input_img_item>img').eq(2)[0].src;
+        console.log(JSON.stringify(fkText)+'----'+JSON.stringify(img1));
+        let url='shuangli/sl_addFankui.sl';
+        let data = {
+           body:{
+               tbname:'sl_fk_tb',
+               userId,
+               fkText,
+               type,
+               img1,
+               img2,
+               img3,
+            } 
+               
+        }
+        let res = await myAjax(url,data);
+        console.log(JSON.stringify(res));
+        if(res.success && res.success.status ===1) {
+            api.toast({
+                msg: '感谢您的反馈，我们会认真考虑您的意见和建议',
+                duration: 2000,
+                location: 'bottom'
+            });
+        }else {
+            api.toast({
+                msg: '提交失败，网络出错~请你稍后再试',
+                duration: 2000,
+                location: 'bottom'
+            });
+        }
+    }
+</script>
+
+</html>

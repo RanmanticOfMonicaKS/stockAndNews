@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>快报</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <style>
+        html,
+        body {
+            background-color: #010646;
+        }
+
+        header {
+            height: 50px;
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
+
+        header>span {
+
+            padding: 3px;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            /* margin: 0 5px; */
+        }
+
+        header>span.active {
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            /* margin: 0 5px; */
+            background-image: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- tab栏 -->
+    <header class="sl_flex_sa">
+        <span class="active">全部</span>
+        <span>自选</span>
+        <span>深沪股</span>
+        <span>港股</span>
+        <span>英股</span>
+        <span>美股</span>
+    </header>
+    <div class="fast_tempList">
+
+    </div>
+    <script id="fast_tempList" type="text/template">
+
+        <section class="fast_news">
+            <div class="fast_news_daytime">
+                {{= it.day}}
+            </div>
+ 
+            <ul class="fast_news_con">
+         {{~ it.dayCon:value:index}}
+         <li class="fast_news_item">
+             <h5> {{= value.time}} </h5>
+             <p>{{= value.newsCon}}</p>
+         </li>
+         {{~}}
+         <!-- <li class="fast_news_item">
+             <h5>15:11</h5>
+             <p>A股三大股指今日低开高走，收盘集体上涨，泸指2800点失而复得，创业板指涨逾1%，两市合计成交价4000亿元，行业板块跌涨互现</p>
+         </li>
+         <li class="fast_news_item">
+             <h5>15:12</h5>
+             <p>A股三大股指今日低开高走，收盘集体上涨，泸指2800点失而复得，创业板指涨逾1%，两市合计成交价4000亿元，行业板块跌涨互现</p>
+         </li>
+         <li class="fast_news_item">
+             <h5>15:15</h5>
+             <p>A股三大股指今日低开高走，收盘集体上涨，泸指2800点失而复得，创业板指涨逾1%，两市合计成交价4000亿元，行业板块跌涨互现</p>
+         </li> -->
+     </ul>
+        </section>
+
+    </script>
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script src="../script/plugins/jquery.min.js"></script>
+    <script src="../script/plugins/doT.min.js"></script>
+    <script src="../script/common.js"></script>
+    <script src="../script/sl_news_fast_fm.js"></script>
+    <script>
+        apiready = function () {
+            let a=[{
+                day:'2019-09-10',
+                dayCon:[ {
+                time:'15:15',
+                newsCon:'新闻主体'
+            }, {
+                time:'15:15',
+                newsCon:'新闻主体'
+            }, {
+                time:'15:15',
+                newsCon:'新闻主体'
+            }]
+        },
+        {
+                day:'2019-09-08',
+                dayCon:[ {
+                time:'15:15',
+                newsCon:'新闻主体'
+            }, {
+                time:'15:15',
+                newsCon:'新闻主体'
+            }, {
+                time:'15:15',
+                newsCon:'新闻主体'
+            }]
+        },
+        {
+                day:'2019-08-18',
+                dayCon:[ {
+                time:'15:15',
+                newsCon:'新闻主体'
+            }, {
+                time:'15:15',
+                newsCon:'新闻主体'
+            }, {
+                time:'15:15',
+                newsCon:'新闻主体'
+            }]
+        }]
+            openFastNewsFrameGroup();
+            spanClick();
+        }
+        const getStr = (param) => {
+            const tempText = doT.template($('#fast_tempList').text()); // 返回一个函数
+            let str = tempText(param);
+            console.log(JSON.stringify(str));
+            
+            api.sendEvent({
+                name: 'str',
+                extra: str,
+            });
+        }
+
+
+        // 1 把自己的数据，在本页面调用，返回字符串，添加
+    </script>
+</body>
+
+</html>

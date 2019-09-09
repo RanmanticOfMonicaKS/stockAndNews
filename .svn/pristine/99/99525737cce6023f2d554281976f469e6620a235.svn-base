@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+</head>
+<style>
+    html,
+    body {
+        background-color: #010646;
+    }
+
+    .sl_header_con {
+        position: absolute;
+        bottom: 3px;
+        left: 10px;
+        right: 10px;
+        height: 30px;
+        padding: 0 5px;
+        line-height: 30px;
+
+    }
+
+    .sl_search {
+        float: left;
+        width: 70%;
+        height: 100%;
+        border: 2px solid #fff;
+        border-radius: 15px;
+    }
+
+    .sl_header_con span {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        top: 0;
+        left: 20px;
+        font-size: 22px;
+        padding-top: 4px;
+        color: #666;
+    }
+
+    .sl_header_con .sl_header_user {
+        float: right;
+        color: #7ABFFF;
+        font-size: 22px;
+        padding-top: 4px;
+    }
+
+    .swiper-container {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .swiper-slide {
+        width: 100%;
+        border-radius: 10px;
+
+    }
+
+    .swiper-slide img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    /* 广播 */
+    .scroll_box {
+        width: 100%;
+        height: 30px;
+        position: relative;
+        overflow: hidden;
+        background-color: #fff;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .broadcasting {
+        width: 100%;
+        position: absolute;
+        height: 30px;
+        line-height: 30px;
+        background-color: #fff;
+        padding-left: 10px;
+    }
+
+    .broadcasting li {
+        height: 100%;
+        color: #1a2a3a;
+        font-size: 12px;
+    }
+
+    /* 股市概况兰 */
+    .stock_info_simple {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        height: 100px;
+        margin-bottom: 20px;
+    }
+
+    .stock_info_item_box {
+        padding-left: 5px;
+        height: 100%;
+        width: 200%;
+    }
+
+    .stock_info_item {
+        width: 10%;
+        height: 100%;
+        background-image: linear-gradient(to bottom, #fff, pink);
+        border-radius: 5px;
+        line-height: 30px;
+    }
+    .sl_stock_name {
+        color:#1a2a3a;
+        text-align: center;
+    }
+    .sl_stock_price,
+    .sl_stock_rise  {
+        color:red;
+        text-align: center;
+    }
+    .sl_stock_price {
+        font-weight: 700;
+    }
+
+
+
+    .news_item_top,
+    .news_item_mid, 
+    .news_item_btm {
+        margin-bottom: 15px;
+    }
+    .news_item_mid {
+        height: 20px;
+    }
+
+    
+    .item_publish_name {
+        float: left;
+    }
+    .item_publish_time {
+        float: right;
+    }
+    .sl_news_item {
+        position: relative;
+        padding: 8px;      
+    }
+    
+</style>
+
+<body>
+    <header class="sl_header">
+        <div class="sl_header_con">
+            <input class="sl_search " />
+            <span class="fa fa-search"></span>
+            <i class="sl_header_user fa fa-user-circle-o" tapmode onclick="sl_user();"></i>
+        </div>
+    </header>
+    <main>
+        <section class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide sl1"> <img src="../image/sl_home_swiper1.jpg" alt=""> </div>
+                <div class="swiper-slide sl2"> <img src="../image/sl_home_swiper2.jpg" alt=""> </div>
+                <div class="swiper-slide sl3"> <img src="../image/sl_home_swiper3.jpg" alt=""> </div>
+                <div class="swiper-slide sl4"> <img src="../image/sl_home_swiper4.jpg" alt=""> </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </section>
+        <section class="scroll_box">
+            <ul class="broadcasting">
+                <li>热门：白酒板块结构觉醒机会明显 强势行情或依然</li>
+                <li>今日新股上市：海能实业发行价格27.33元 </li>
+                <li>股市大盘持续升温，如果看待下半年股市行情</li>
+            </ul>
+        </section>
+        <section class="stock_info_simple ">
+            <div class="stock_info_item_box sl_flex_sb">
+                <div class="stock_info_item">
+                    <div class="sl_stock_name">深沪股</div>
+                    <div class="sl_stock_price">2999.8</div>
+                    <div class="sl_stock_rise">+20.5%</div>
+                </div>
+                <div class="stock_info_item">
+                    <div class="sl_stock_name">深沪股</div>
+                    <div class="sl_stock_price">2999.8</div>
+                    <div class="sl_stock_rise">+20.5%</div>
+                </div>
+                <div class="stock_info_item">
+                    <div class="sl_stock_name">深沪股</div>
+                    <div class="sl_stock_price">2999.8</div>
+                    <div class="sl_stock_rise">+20.5%</div>
+                </div>
+                <div class="stock_info_item">
+                    <div class="sl_stock_name">深沪股</div>
+                    <div class="sl_stock_price">2999.8</div>
+                    <div class="sl_stock_rise">+20.5%</div>
+                </div>
+                <div class="stock_info_item">
+                    <div class="sl_stock_name">深沪股</div>
+                    <div class="sl_stock_price">2999.8</div>
+                    <div class="sl_stock_rise">+20.5%</div>
+                </div>
+                <div class="stock_info_item">
+                    <div class="sl_stock_name">深沪股</div>
+                    <div class="sl_stock_price">2999.8</div>
+                    <div class="sl_stock_rise">+20.5%</div>
+                </div>
+                <div class="stock_info_item">
+                    <div class="sl_stock_name">深沪股</div>
+                    <div class="sl_stock_price">2999.8</div>
+                    <div class="sl_stock_rise">+20.5%</div>
+                </div>
+                <div class="stock_info_item">
+                    <div class="sl_stock_name">深沪股</div>
+                    <div class="sl_stock_price">2999.8</div>
+                    <div class="sl_stock_rise">+20.5%</div>
+                </div>
+            </div>
+        </section>
+        <section class="sl_hr"></section>
+        <!-- 今日要闻 -->
+        <section class="today_news sl_title">
+            今日要闻
+        </section>
+        <div class="sl_news_template">
+            <div class="sl_news_item">
+                <div class="news_item_top">今日新股上市提示：还能实业发行价格27.33元</div>
+                <div class="news_item_mid"></div>
+                <div class="news_item_btm">
+                    <div class="item_publish_name">东方财富网</div>
+                    <div class="item_publish_time">2019-08-15 09:37:25</div>
+                </div>
+            </div>
+            <div class="sl_news_item">
+                <div class="news_item_top">今日新股申购一览表</div>
+                <div class="news_item_mid">(2019年8月15日) 附打新攻略</div>
+                <div class="news_item_btm">
+                    <div class="item_publish_name">金投股票网整合</div>
+                    <div class="item_publish_time">2019-08-15 09:37:25</div>
+                </div>
+            </div>
+            <div class="sl_news_item">
+                <div class="news_item_top">今日新股申购一览表</div>
+                <div class="news_item_mid">(2019年8月15日) 附打新攻略</div>
+                <div class="news_item_btm">
+                    <div class="item_publish_name">金投股票网整合</div>
+                    <div class="item_publish_time">2019-08-15 09:37:25</div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/plugins/swiper.min.js"></script>
+<script src="../script/sl_home.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>
+<script>
+    // 消息广播js代码
+    $(function () {
+        //获得当前<ul>
+        var $uList = $(".scroll_box ul");
+        var timer = null;
+        //滚动动画
+        $uList.hover(function () {
+                clearInterval(timer);
+            },
+            function () { //离开启动定时器
+                timer = setInterval(function () {
+                        scrollList($uList);
+                    },
+                    100);
+            }).trigger("mouseleave"); //自动触发触摸事件
+        function scrollList(obj) {
+            //获得当前<li>的高度
+            var scrollHeight = document.querySelector('.scroll_box li').offsetHeight;
+            var ulH = $uList.height();
+
+
+            $uList.animate({
+                    top: -scrollHeight
+                },
+                3000,
+                function () {
+                    $uList.css({
+                        "top": 0
+                        //这里		
+                    }).find('li:first').appendTo($uList);
+                })
+        }
+    })
+</script>
+<script>
+    apiready = function(){
+        $api.fixStatusBar($api.dom('.sl_header'));
+        fixMainH();
+    }
+        
+</script>
+
+</html>

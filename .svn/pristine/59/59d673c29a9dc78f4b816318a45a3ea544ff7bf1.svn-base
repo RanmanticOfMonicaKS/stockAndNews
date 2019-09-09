@@ -1,0 +1,45 @@
+// 1. 打开framegroup
+const openChildFrame = (index) => {
+    // 获取头部高度
+    let headerH  = $api.getStorage('headerH');
+    let footerH  = $api.getStorage('footerH');
+    console.log(JSON.stringify(headerH)+'----'+JSON.stringify(footerH));
+    let timeout =300;
+    if(index === 0) {
+        timeout =1000;
+    }
+        setTimeout(()=> {
+            api.openFrame({
+                name: frameGroup[index],
+                url: frameGroup[index]+'.html',
+                rect: {
+                    x: 0,
+                    y:headerH +2,
+                    w: 'auto',
+                    marginBottom:footerH,
+                }
+            });
+
+        },timeout)
+        console.log('打开新的页面');
+        
+} 
+// 2. 切换tab栏
+const swithNewsGroup = () => {
+    $('.sl_header>li').on('click',function(){
+        let index =$(this).index();
+        $(this).addClass('active').siblings().removeClass('active');
+        openChildFrame(index);
+        if(index !== 1) {
+            api.setFrameGroupAttr({
+                name: 'fast_group',
+                hidden: true
+            });
+        } else {
+            api.setFrameGroupAttr({
+                name: 'fast_group',
+                hidden: false
+            });
+        }
+    }) 
+}

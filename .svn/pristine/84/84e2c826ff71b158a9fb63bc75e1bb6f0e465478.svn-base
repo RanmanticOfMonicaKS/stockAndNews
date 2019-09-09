@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>快报</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <style>
+          html,body {
+               background-color: #010646;
+           }
+           body {
+               padding: 10px;
+           }
+           header {
+               height: 50px;
+               padding: 10px 0;
+                box-sizing: border-box;
+           }
+           header >span {
+
+                padding: 3px;
+                color: #fff;
+                font-size: 16px;
+                border-radius: 5px;
+                /* margin: 0 5px; */
+                background-image: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);           }
+    </style>
+</head>
+<body>
+    <!-- tab栏 -->
+    <header class="sl_flex_sa">
+        <span>全部</span>
+        <span>自选</span>
+        <span>深沪股</span>
+        <span>港股</span>
+        <span>英股</span>
+        <span>美股</span>
+    </header>
+</body>
+</html>

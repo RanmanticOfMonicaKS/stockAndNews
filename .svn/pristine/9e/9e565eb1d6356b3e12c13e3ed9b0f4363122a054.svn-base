@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <title>资讯</title>
+    <style>
+        html,
+        body {
+            background-color: #010646;
+        }
+        .news_default_search {
+            text-align: center;
+        }
+        .sl_search {
+            width: 80%;
+            height: 50px;
+            border: 2px solid #fff;
+            border-radius: 25px;
+        }
+        .news_default_search span {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        top: 0;
+        left: 20px;
+        font-size: 22px;
+        padding-top: 4px;
+        color: #666;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 搜索 -->
+    <section class="news_default_search">
+        <input class="sl_search " />
+        <span class="fa fa-search"></span>
+    </section>
+</body>
+
+</html>

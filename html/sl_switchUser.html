@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>切换用户</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+        html,
+        body {
+            background-color: #010646;
+        }
+
+        .news_item_top,
+        .news_item_mid,
+        .news_item_btm {
+            margin-bottom: 10px;
+        }
+
+        .news_item_mid {
+            height: 20px;
+        }
+
+
+        .item_publish_name {
+            float: left;
+        }
+
+        .item_publish_time {
+            float: right;
+        }
+
+        .sl_news_item {
+            position: relative;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="sl_header">
+        <div class="center" tapmode>
+            <span>切换用户</span>
+            <span class="fa fa-chevron-left " onclick="closeWin();" tapmode></span>
+        </div>
+    </header>
+
+</body>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script>
+    apiready = function () {
+        api.parseTapmode();
+        $api.fixStatusBar($api.dom('.sl_header'));
+        fixMainH();
+    }
+</script>
+
+</html>

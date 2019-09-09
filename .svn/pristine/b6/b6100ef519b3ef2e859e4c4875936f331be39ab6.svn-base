@@ -1,0 +1,8 @@
+//1. 点击图标，进入user页面
+const sl_user  = () => {
+    api.openWin({
+        name: 'sl_user',
+        url: 'sl_user.html',
+        bounces: false,
+    });
+}

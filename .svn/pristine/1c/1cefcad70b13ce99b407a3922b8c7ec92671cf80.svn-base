@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页-搜索</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+            html,
+    body {
+        background-color: #010646;
+    }
+
+    .sl_header_con {
+        position: relative;
+        height: 54px;
+        text-align: center;
+        line-height: 54px;
+    }
+    .sl_search_box {
+        width: 60%;
+        position: relative;
+    }
+    .sl_search {
+        width: 100%;
+        height: 30px;
+        border: 1px solid #fff;
+        border-radius: 27px;
+        line-height: 40px;
+        padding-left: 35px;
+        color:#fff;
+    }
+    .sl_header_con >* {
+        display: inline-block;
+    }
+    .sl_search_box {
+        position: absolute;
+        top: 12px;
+        left: 50px;
+        color:#fff;
+    }
+    .sl_header_con .fa-chevron-left{
+        position: absolute;
+        left: 20px;
+        top: 12px;
+        font-size: 30px;
+    }
+    .sl_header_con .fa-search {
+        position: absolute;
+        top: 2px;
+        left: 10px;
+        font-size: 25px;
+        color: #666;
+    }
+    .sl_search_btn {
+        position: absolute;
+        width: 60px;
+        height: 30px;
+        border-radius: 3px;
+        background-color: #7ABFFF;
+        color:#fff;
+        text-align: center;
+        line-height: 30px;
+        right: 10px;
+        top: 12px;
+    }
+    .hot_stock,
+    .history_scan,
+    .hot_news {
+        padding: 5px 10px 20px 10px;
+        background-color: #111453;
+        margin-bottom: 10px;
+    }
+    .hot_stock h5,
+    .history_scan h5,
+    .hot_news h5 {
+        color:#fff;
+        font-size: 18px;
+    } 
+    .history_scan .content,
+    .hot_news  .content,
+    .hot_stock .content {
+        padding-top: 10px;
+    }
+    .history_scan .content >li {
+        float: left;
+        border: 1px solid #fff;
+        padding: 2px 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+    }
+    .hot_stock .content >li {
+        float: left;
+        border: 1px solid #fff;
+        padding: 2px 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+    }
+    </style>
+</head>
+<body>
+    <header class="sl_header">
+        <div class="sl_header_con">
+            <i class="fa fa-chevron-left " tapmode onclick="api.closeWin();"></i>
+            <div class="sl_search_box">
+                <input class="sl_search " />
+                
+                <span class="fa fa-search"></span>
+            </div>
+            <botton class="sl_search_btn" tapmode onclick="sl_user();">搜索</botton>
+        </div>
+    </header>
+    <main>
+ 
+        </section>
+        <section class="history_scan">
+            <h5>最近浏览</h5>
+            <ul class="content clearfix">
+                    <li>伊利股份</li>
+                    <li>康师傅股份</li>
+                    <li>贵州茅台</li>
+                    <li>工业副联</li>
+                    <li>阿里巴巴</li>
+            </ul>
+        </section>
+        <section class="hot_stock clearfix">
+            <h5>热门股票</h5>
+            <ul class="content">
+                    <li>阿里巴巴</li>
+                    <li>玖富</li>
+                    <li>京东</li>
+                    <li>斗鱼</li>
+                    <li>比亚迪电子</li>
+                    <li>小米科技</li>
+            </ul>
+        </section>
+        <section class="hot_news">
+                <h5>热门话题</h5>
+                <ul class="content">
+                        <li onclick="clickToNews(0)" tapmode>1. 小米Q2财报会逆袭吗</li>
+                        <li onclick="clickToNews(1)" tapmode>2. 英伟达Q2财报大超预期，你怎么看？</li>
+                        <li onclick="clickToNews(2)" tapmode>3. 阿里巴巴发财报，你看好吗？</li>                     
+                </ul>
+    </main>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/common.js"></script>
+<script>
+    apiready = function(){
+        api.parseTapmode();
+        $api.fixStatusBar($api.dom('.sl_header'));
+
+    }
+        
+</script>
+</html>

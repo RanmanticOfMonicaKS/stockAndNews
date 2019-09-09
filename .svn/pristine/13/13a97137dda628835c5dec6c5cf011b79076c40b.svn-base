@@ -1,0 +1,52 @@
+// 1. 验证表单功能
+const checkInput = ({sl_uname,sl_upwd}) => {
+    if(!sl_uname) return { err:true, errMsg:'手机号码不能为空...',errMarked:{ sl_uname } };
+    if(!(/^1[3456789]\d{9}$/.test(sl_uname))) return { err:true,errMsg:'您输入的手机号有误...',errMarked:{ sl_uname } };
+    if(!sl_upwd) return { err:true, errMsg:'密码不能为空...',errMarked:{ sl_upwd } };
+    return { success:true,successMsg:'验证成功' }
+} 
+
+// 2. 账号密码验证
+const checkUinfo = async ( {sl_uname,sl_upwd} ) => {
+    api.showProgress({
+        title: ' 正在验证',
+        text: ' 请稍后',
+        modal:  false
+    });
+    let url = 'shuangli/slLogin.sl';
+    let data = {
+        body:{
+            ks_param:{
+                sl_uname,
+                sl_upwd,
+            }
+        }
+    };
+    const res = await myAjax( url,data );
+    console.log(JSON.stringify(res));
+    if(res.failure) return { failure:true ,failureMsg:'网络出错，请稍后再试...'};
+    if(res.success && res.success.ks_param && res.success.ks_param.count === 1 ) {
+        // 验证成功
+        return  { success:true,successRes:res.success.ks_param.records[0]};
+    } else {
+        return { failure:true,failureMsg:'您的账号或密码不正确...' };
+    }  
+} 
+
+// 3. 处理验证完毕的结果
+const  signBtnClick = async () => {
+    let sl_uname = $('#sl_uname').val().trim();
+    let sl_upwd = $('#sl_upwd').val().trim();
+    console.log(JSON.stringify(sl_uname)+'-------'+JSON.stringify(sl_upwd));
+    let inputCheck = checkInput({ sl_uname,sl_upwd });
+    if(inputCheck.err)  {
+        let cssSelector =  Object.keys(inputCheck.errMarked)[0];
+        console.log(JSON.stringify(cssSelector));
+        $('.err_box').hide();
+        $('.'+cssSelector+' >.err_box').show().children('.err_box_msg').text(inputCheck.errMsg);
+        return;
+    }
+    let dataCheck  = await checkUinfo({sl_uname,sl_upwd});
+    console.log(JSON.stringify(dataCheck));
+    
+} 

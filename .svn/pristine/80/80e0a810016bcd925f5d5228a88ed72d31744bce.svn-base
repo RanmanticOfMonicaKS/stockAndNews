@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" href="../css/api.css">
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <title>登录页</title>
+    <style>
+        .sl_register_conten {
+            position: absolute;
+            top: 20%;
+            left: 0;
+            height: 60%;
+            width: 80%;
+            margin-left: 10%;
+        }
+
+        .sl_register_conten .sl_logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            background: url('../image/sl_logo.png');
+            background-size: 100px 100px;
+            margin-bottom: 20px;
+        }
+
+        .sl_welcome {
+            margin-bottom: 50px;
+            visibility: hidden;
+        }
+
+        .sl_welcome .sl_welcome_title {
+            color: transparent;
+            background-image: linear-gradient(90deg, #fccb90 0%, #d57eeb 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .sl_welcome .sl_welcome_con {
+            font-size: 18px;
+
+        }
+
+        .register_box {
+            margin-bottom: 50px;
+        }
+
+        .register_box li {
+            overflow: hidden;
+            position: relative;
+            border-bottom: 1px solid #aaa;
+            margin-bottom: 20px;
+            height: 2.2rem;
+            line-height: 2.2rem;
+        }
+
+        .register_box li input {
+            width: 100px;
+        }
+
+        .register_box li>label {
+            display: block;
+            height: 2.2rem;
+            line-height: 2.2rem;
+            color: #424242;
+            font-size: 20px;
+        }
+
+        .register_box li>input,
+        .register_box li>label {
+            float: left;
+        }
+
+        .register_box .sl_yzm_box {
+            float: right;
+            width: 80px;
+            height: 100%;
+        }
+
+        .register_box .sl_yzm_btn {
+            width: 80px;
+            height: 30px;
+            background-color: #7ABFFF;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 14px;
+            vertical-align: middle;
+            line-height: 30px;
+        }
+
+        .register_box li.last {
+            border: 0;
+            padding: 10px;
+        }
+
+        .register_btn {
+            width: 80%;
+            margin: 0 auto;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="sl_register_conten">
+        <div class="sl_logo"></div>
+        <div class="sl_welcome">
+            <div class="sl_welcome_title">Hi</div>
+            <div class="sl_welcome_con">欢迎来到双利股票，请登录...</div>
+        </div>
+        <ul class="register_box">
+            <li class="sl_uname">
+                <label for="sl_uphone">手机号: &nbsp;&nbsp;&nbsp;</label><input type="number" name="sl_uphone"
+                    id="sl_uphone" placeholder="请输入手机号">
+            </li>
+            <li class="sl_uyzm">
+                <label for="sl_uyzm">验证码：&nbsp;&nbsp;</label>
+                <input type="number" name="sl_uyzm" id="sl_yzm_btn" placeholder="请输入验证码">
+                <div class="sl_yzm_box">
+                    <button class="sl_yzm_btn" tapmode>获取验证码</button>
+
+                </div>
+
+            </li>
+            <li class="last">
+            </li>
+        </ul>
+        <div class="register_btn sl_skin" tapmode onclick="checkYzm();">
+            确认
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/sl_register.js"></script>
+<script>
+    var time1;
+    var rightYzm;
+    var flag = true;
+    var id; // 如果用户存在，记录其id
+    var user_phone;
+    apiready = function () {
+        api.parseTapmode();
+        Count();
+    }
+    // 修复 ，读秒器显示问题
+    function Count() {
+        // 点击获取验证码操作
+        $('.sl_yzm_btn').on('click', function () {
+            user_phone = $('#sl_uphone').val().trim();
+
+            if (!user_phone || !(/^1[34578]\d{9}$/.test(user_phone))) {
+                return api.toast({
+                    msg: '请输入正确的手机号码',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+            }
+            if ($('.sl_yzm_btn').hasClass('disabled')) return;
+            $('.sl_yzm_btn').attr('disabled', true);
+            $('.sl_yzm_btn').css({
+                background: '#d8d8d8',
+                color: '#707070',
+            }).text('稍等60s');
+            let count = 59;
+            const countDown = setInterval(() => {
+                if (count === 0) {
+                    $('.sl_yzm_btn').text('重新发送').removeAttr('disabled');
+                    $('.sl_yzm_btn').css({
+                        background: '#f8d840',
+                        color: '#fff',
+                    });
+                    clearInterval(countDown);
+                } else {
+
+                    $('.sl_yzm_btn').text('稍等' + count + 's');
+                }
+                count--;
+            }, 1000);
+        })
+    }
+
+
+    // 点击获取验证码操作
+    function checkYzm() {
+        console.log('验证');
+
+        // 现在时间
+        var time2 = +new Date();
+        var inputYzm = $('#sl_yzm_btn').val();
+        console.log(JSON.stringify(time2) + '----' + JSON.stringify(inputYzm));
+
+        if (rightYzm == inputYzm && time2 < time1) {
+            api.toast({
+                msg: '验证成功',
+                duration: 2000,
+                location: 'bottom'
+            });
+            setTimeout(() => {
+                api.openWin({
+                    name: 'initPwd',
+                    url: 'initPwd.html',
+                    bounces: false,
+                    pageParam: {
+                        user_phone,
+                        id
+                    }
+
+                }, 100);
+            })
+        } else {
+            alert('验证码不正确或已过期');
+        }
+
+    }
+
+    $('.sl_yzm_btn').on('click', function () {
+        // 手机号验证
+        user_phone = $('#sl_uphone').val().trim();
+
+        if (!user_phone || !(/^1[34578]\d{9}$/.test(user_phone))) {
+            return api.toast({
+                msg: '请输入正确的手机号码',
+                duration: 2000,
+                location: 'bottom'
+            });
+        }
+        let count = 59;
+        const countDown = setInterval(() => {
+            if (count === 0) {
+                $('.sl_yzm_btn').text('重新发送').removeAttr('disabled');
+                $('.sl_yzm_btn').css({
+                    background: '#f8d840',
+                    color: '#fff',
+                });
+                clearInterval(countDown);
+            } else {
+                $('.sl_yzm_btn').attr('disabled', true);
+                $('.sl_yzm_btn').css({
+                    background: '#d8d8d8',
+                    color: '#707070',
+                });
+                $('.sl_yzm_btn').text('稍等' + count + 's');
+            }
+            count--;
+        }, 1000);
+        // 验证手机号是否注册。
+        api.ajax({
+            url: baseUrl + 'ks/ks/getUInfo.ksrun',
+            method: 'post',
+            timeout: 30,
+            dataType: 'json',
+            returnAll: false,
+            data: {
+                body: {
+                    ks_data: {
+                        uName: user_phone
+                    }
+                }
+            }
+        }, function (ret, err) {
+            if (ret) {
+                // TODO 
+                console.log(JSON.stringify(ret));
+
+                if (ret.ks_data && ret.ks_data.count > 0) {
+                    console.log('真----真');
+                    //作用域问题把，这边返回的true，并不是函数的返回值
+                    id = ret.ks_data.records[0].id;
+
+                    // 记录验证码信息
+                    if (flag) {
+                        console.log(JSON.stringify(user_phone));
+                        api.ajax({
+                            url: baseUrl + 'ks/ks/sendMessage.ksrun',
+                            method: 'post',
+                            timeout: 15,
+                            dataType: 'json',
+                            returnAll: false,
+                            data: {
+                                body: {
+                                    ks_data: {
+                                        user_phone: user_phone
+                                    }
+                                }
+                            }
+                        }, function (ret, err) {
+                            if (ret) {
+                                console.log(JSON.stringify(ret));
+                                if (ret.code && ret.expiredate) {
+                                    time1 = ret.expiredate;
+                                    rightYzm = ret.code;
+                                    console.log(JSON.stringify(rightYzm) + '----' + JSON
+                                        .stringify(time1));
+
+                                }
+                            } else {
+                                api.alert({
+                                    msg: ('错误码：' + err.code + '；错误信息：' + err.msg +
+                                        '网络状态码：' + err
+                                        .statusCode)
+                                });
+                            };
+                        });
+                        flag = false;
+                        setTimeout(() => {
+                            flag = true;
+                        }, 60000)
+                    }
+
+                } else {
+                    console.log('假----假');
+                    return api.toast({
+                        msg: '您的手机号还没有注册，请您校对后重试',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                }
+            } else {
+                api.alert({
+                    msg: ('错误码：' + err.code + '；错误信息：' + err.msg + '网络状态码：' + err.statusCode)
+                });
+            };
+        });
+
+
+    })
+</script>
+
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+        <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+        <title>首页</title>
+        <link rel="stylesheet" type="text/css" href="../css/api.css" />
+        <link rel="stylesheet" href="../css/aui.css">
+        <link rel="stylesheet" href="../css/sl_common.css">
+        <link rel="stylesheet" href="../css/font-awesome.min.css">
+    </head>
+    <style>
+            html,body {
+               background-color: #010646;
+           }
+           .sl_header {
+               text-align: center;
+               line-height: 54px;
+           }
+           .sl_header > li {
+               line-height: normal;
+               height: 100%;
+               line-height: 54px;
+           }
+           .sl_header > li.left {
+                position: absolute;
+                top: 0;
+                left: 20px;
+           }
+           .sl_header > li.right {
+                position: absolute;
+                top: 0;
+                right: 20px;
+
+           }
+           .sl_header >li.center {
+               position: absolute;
+               left: 50%;
+               top: 50%;
+               transform: translate(-50%,-50%);
+               
+           }
+           .sl_header>li.active {
+               border-bottom: 2px solid tomato;
+           }
+       </style>
+<body>
+    <ul class="sl_header">
+        <li class="left active" tapmode ><span>资讯</span></li>
+        <li class="center" tapmode ><span>快报</span></li>
+        <li class="right" tapmode ><span>自选</span></li>
+    </ul>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/sl_main.js"></script>
+<script src="../script/plugins/swiper.min.js"></script>
+<script src="../script/sl_news.js"></script>
+<script>
+    apiready = function(){
+        api.parseTapmode();
+        let index =  _syncPrefs('main_index');
+        console.log(JSON.stringify(index));
+        if(index === 2) {          
+            openChildGroup();
+        }
+        api.addEventListener({
+            name: 'news_show'
+        }, function(ret, err){
+            console.log('news_show');
+            
+            openChildGroup();
+        });
+        swithNewsGroup();
+    }
+        
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>快报-深沪</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+            html,
+    body {
+        background-color: #010646;
+    }
+    </style>
+</head>
+<body>
+    <div class="shenhu_tempList">
+
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/plugins/swiper.min.js"></script>
+<script src="../script/sl_news_fast_fm.js"></script>
+<script>
+    apiready = function(){
+        let a = {time:'2019-8-13'}
+        getStrToTemp('.shenhu_tempList',a);
+        
+    }
+        
+</script>
+
+</html>

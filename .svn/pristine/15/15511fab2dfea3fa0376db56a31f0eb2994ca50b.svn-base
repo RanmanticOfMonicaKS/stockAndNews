@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>快报-美股</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+            html,
+    body {
+        background-color: #010646;
+    }
+    </style>
+</head>
+<body>
+    <div class="us_tempList"></div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/plugins/swiper.min.js"></script>
+<script src="../script/sl_news_fast_fm.js"></script>
+<script>
+                let a=[{
+                day:'2019-09-10',
+                dayCon:[ {
+                time:'15:15',
+                newsCon:'另一方面，英力特现金流状况也不算差。数据显示，2018年上半年，该公司经营性现金流呈净流入，金额为6077万元，上期则为1.25亿元。而最近三年来，该公司并无负债压力，2016年、2017年，其短期借款、一年内到期的非流动负债、长期借款均无余额。截至6月底，其4.35亿元的流动负债中，最大的两项是应付账款、预收款，金额分别为2.71亿元、7870万元。'
+            }, {
+                time:'15:00',
+                newsCon:'开信息显示，2007年至2010年，每股现金分红0.1元、0.3元、0.1元、0.2元，英力特分红金额1374万元、4120万元、1770万元、3540万元；2012年至2015年，每股现金分红0.5元、0.1元、0.2元、0.3元，总分金额约为8870万元、3030万元、6060万元、9090万元，以上合计现金分红约为3.7亿元'
+            }, {
+                time:'14:00',
+                newsCon:'上述41只个股中，近30日内共有20只个股获得了机构给予“买入”或“增持”等看好评级，占比48.8%。其中，杰瑞股份（22家）、益生股份（10家）、东方电缆（8家）、硕贝德（7家）、世嘉科技（7家）和金雷股份（5家）等个股近期均受到5家及以上机构联袂推荐。'
+            }]
+        },
+        {
+                day:'2019-09-08',
+                dayCon:[ {
+                time:'11:15',
+                newsCon:'《证券日报》记者统计发现，在上述41只个股中，有36只个股最新总市值低于100亿元，占比达87.8%。其中，包括ST南化、ST厦华、天津普林、哈空调、大理药业等在内的13只个股最新总市值均低于30亿元。只有上海莱士、睿创微纳、杰瑞股份、嘉元科技和益生股份等5家公司总市值超过100亿元。'
+            }, {
+                time:'10:15',
+                newsCon:'对此，业内人士普遍认为，经过近日的震荡调整，在中长线价值正在逐步显现的情况下，可重点关注业绩向好的白马股。记者进一步梳理发现，上述41只个股上半年净利润增长超过100%的个股具有五大特征。'
+            }, {
+                time:'09:20',
+                newsCon:'券日报》市场研究中心根据同花顺统计发现，截至8月9日收盘，沪深两市已有298家公司披露了中报。其中，有212家公司上半年净利润实现同比增长，占比71.14%。值得关注的是，有41家公司报告期内净利润同比增长超过100%。'
+            }]
+        },
+        {
+                day:'2019-08-18',
+                dayCon:[ {
+                time:'18:20',
+                newsCon:'新闻主其次，从行业属性来看，上述41家公司中，有7家公司属于机械设备行业，6家公司属于电子行业。体'
+            }, {
+                time:'17:00',
+                newsCon:'8月份整个市场呈现震荡回落态势，多数个股也难以幸免，但是从长期来看，绩优股的走势普遍稳健。统计发现，在上述41只个股中，8月份以来有21只个股跑赢同期大盘（上证指数月跌幅为5.38%），占比逾五成。另外，今年以来有30只个股跑赢同期大盘（上证指数年内涨幅达11.26%），占比超过七成。'
+            }, {
+                time:'16:00',
+                newsCon:'上述41只个股中，近30日内共有20只个股获得了机构给予“买入”或“增持”等看好评级，占比48.8%。其中，杰瑞股份（22家）、益生股份（10家）、东方电缆（8家）、硕贝德（7家）、世嘉科技（7家）和金雷股份（5家）等个股近期均受到5家及以上机构联袂推荐。'
+            }]
+        }]
+
+    apiready = function(){
+        api.addEventListener({
+            name: 'str'
+        }, function(ret, err){
+            console.log(JSON.stringify(ret));
+            $('.us_tempList').append(ret.value);
+        });
+        for (let i = 0 ; i<a.length ; i++) {
+            let item = a[i];
+            api.execScript({
+                frameName: 'sl_news_fast_fm',
+                script:'getStr('+ JSON.stringify(a[i]) +');'
+            });
+        }
+    }
+        
+</script>
+
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" href="../css/api.css">
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <title>个人中心</title>
+    <style>
+        html,
+        body {
+            background-color: #010646;
+        }
+
+        .sl_header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 54px;
+            z-index: 999;
+            background-color: transparent;
+        }
+
+        .sl_header .center {
+            width: 100%;
+            text-align: center;
+            line-height: 54px;
+            font-size: 20px;
+        }
+
+        .center .fa {
+            position: absolute;
+            left: 20px;
+            font-size: 30px;
+            padding: 12px 10px 0 10px;
+            vertical-align: middle;
+            color: #ccc;
+        }
+
+        .sl_user_bgi {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: url('../image/sl_user_bg.jpg');
+            background-size: cover;
+            line-height: 200px;
+            margin-bottom: 30px;
+        }
+
+        .bg_mask {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, .5);
+        }
+
+        .sl_user_title {
+            position: absolute;
+            left: 20px;
+            top: 40%;
+            z-index: 333;
+        }
+
+        .sl_user_con {
+            text-align: center;
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            bottom: -20px;
+            z-index: 999;
+            height: 120px;
+            background-color: #FFEEEE;
+            line-height: 120px;
+            color: #181B3B;
+            border-radius: 10px;
+        }
+
+        .sl_user_con>.left {
+            width: 120px;
+            padding: 0 10px;
+            margin-top: -20px;
+            height: 120px;
+            line-height: 40px;
+
+        }
+
+        .sl_user_con>.left img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .user_sex_icon {
+            padding-top: 10px;
+            width: 30px;
+            height: 30px;
+            background: url('../image/xingbienv.png');
+            background-size: cover;
+        }
+
+        .sl_user_con>.right {
+            padding-top: 15px;
+            line-height: 30px;
+            text-align-last: left;
+            width: calc(100% - 120px);
+        }
+
+        .nickname {
+            font-weight: 700;
+        }
+
+        .aui-list-item {
+            background-color: #111453;
+        }
+        .sl_shoucang,
+        .sl_fankui,
+        .sl_bindPhone,
+        .sl_systemConfig,
+        .sl_switchUser {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+        .sl_shoucang {
+            background: url('../image/Heart.png');
+            background-size: cover;
+        }
+        .sl_fankui {
+            background: url('../image/edit.png');
+            background-size: cover;
+            background-position: -10px 0;
+        }
+        .sl_bindPhone {
+            background: url('../image/phone.png');
+            background-size: cover;
+
+        }
+        .sl_systemConfig {
+            background: url('../image/setting.png');
+            background-size: cover;
+
+        }
+        .sl_switchUser {
+            background: url('../image/yonghudaoru.png');
+            background-size: cover;
+        }
+        .aui-list {
+            background-color: #010646;
+        }
+        .aui-list .aui-list-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="sl_header">
+        <div class="center" tapmode>
+            <span>个人中心</span>
+            <span class="fa fa-chevron-left " onclick="closeWin();" tapmode></span>
+        </div>
+    </header>
+    <section class="sl_user_bgi">
+        <div class="bg_mask"></div>
+        <span class="sl_user_title">Hi,晚上好</span>
+        <div class="sl_user_con">
+            <div class="left">
+                <img src="../image/sl_touxiang.jpeg" alt="" class="user_img">
+                <span class="user_sex_icon"></span>
+            </div>
+            <div class="right">
+                <div class="nickname">挥金如土的猪</div>
+                <div class="id">ID：182****0812</div>
+                <div class="qianming">
+                    <i class="fa fa-pencil-square-o "></i>&nbsp;&nbsp; 暴富使我快乐
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <ul class="aui-list">
+        <li class="aui-list-item aui-list-item-arrow">
+            <div class="aui-list-item-center">
+                <div class="aui-list-item-title"><span class="sl_shoucang"></span> 我的收藏</div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-arrow">
+            <div class="aui-list-item-center">
+                <div class="aui-list-item-title"><span class="sl_fankui"></span> 意见反馈</div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-arrow">
+            <div class="aui-list-item-center">
+                <div class="aui-list-item-title"><span class="sl_bindPhone"></span> 修改绑定手机</div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-arrow">
+            <div class="aui-list-item-center">
+                <div class="aui-list-item-title"><span class="sl_systemConfig"></span> 系统设置</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-center">
+                <div class="aui-list-item-title"><span class="sl_switchUser"></span> 切换账号</div>
+            </div>
+        </li>
+
+    </ul>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/sl_user_edit.js"></script>
+<script>
+    apiready = function(){
+        api.parseTapmode();
+        $api.fixStatusBar($api.dom('.sl_header'));
+
+    }
+        
+</script>
+
+</html>

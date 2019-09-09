@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+</head>
+<style>
+    html,
+    body {
+        background-color: #010646;
+    }
+    main {
+        padding: 0;
+    }
+    .sl_header>.center {
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .center>span.fa {
+        position: absolute;
+        top: 50%;
+        right: 30px;
+        transform: translate(0, -50%);
+        color: #639EFA;
+    }
+
+    .news_default_search {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        margin: 10px auto;
+        text-align: center;
+        margin-bottom: 10px;
+        background-color: #010646;
+    }
+
+    .sl_search {
+        display: inline-block;
+        width: 90%;
+        height: 30px;
+        border: 2px solid #fff;
+        border-radius: 25px;
+    }
+
+    .news_default_search span {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        top: 0;
+        left: 20px;
+        font-size: 22px;
+        padding-top: 4px;
+        color: #666;
+    }
+
+    /* 股票数据部分*/
+    .stock_indicate {
+        background-color: #010646;
+    }
+    .stock_indicate >span {
+        display: inline-block;
+        width: 19%;
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+    }
+    .stock_indicate >span.first {
+        color:#010646;
+    }
+
+    .stcok_content {
+        padding: 0 10px;
+    }
+    .stock_item {
+        display:-webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        background-color: #111453;
+        height: 80px;
+        line-height: 80px;
+        border-bottom: 3px solid #26326C;
+    }
+    .stock_item li {
+        width: 20%;
+        text-align: center;
+    }
+    .stock_item >li:nth-child(1) {
+        line-height: 40px;
+    }
+</style>
+
+<body>
+    <header class="sl_header">
+        <div class="center" tapmode>
+            <span>自选股</span>
+            <span class="fa fa-file-text" onclick="" tapmode></span>
+        </div>
+
+    </header>
+    <main>
+        <section class="news_default_search">
+            <input class="sl_search " />
+            <span class="fa fa-search"></span>
+        </section>
+        <!-- 数据部分 -->
+        <div class="stock_data_box">
+            <div class="stock_indicate">
+                <span class="first">哈哈</span>
+                <span>最新</span>
+                <span>涨幅</span>
+                <span>涨跌</span>
+                <span>量比</span>
+            </div>
+    
+            <ul class="stcok_content">
+                <li>
+                    <ul class="stock_item">
+                        <li>
+                            <span>上证指数</span><br />
+                            <span>1A0001</span>
+                        </li>
+                        <li>2792.19</li>
+                        <li>0.61%</li>
+                        <li>17.44</li>
+                        <li>0.9</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="stock_item">
+                        <li>
+                            <span>上证指数</span><br />
+                            <span>1A0001</span>
+                        </li>
+                        <li>2792.19</li>
+                        <li>0.61%</li>
+                        <li>17.44</li>
+                        <li>0.9</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="stock_item">
+                        <li>
+                            <span>上证指数</span><br />
+                            <span>1A0001</span>
+                        </li>
+                        <li>2792.19</li>
+                        <li>0.61%</li>
+                        <li>17.44</li>
+                        <li>0.9</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="stock_item">
+                        <li>
+                            <span>上证指数</span><br />
+                            <span>1A0001</span>
+                        </li>
+                        <li>2792.19</li>
+                        <li>0.61%</li>
+                        <li>17.44</li>
+                        <li>0.9</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="stock_item">
+                        <li>
+                            <span>上证指数</span><br />
+                            <span>1A0001</span>
+                        </li>
+                        <li>2792.19</li>
+                        <li>0.61%</li>
+                        <li>17.44</li>
+                        <li>0.9</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="stock_item">
+                        <li>
+                            <span>上证指数</span><br />
+                            <span>1A0001</span>
+                        </li>
+                        <li>2792.19</li>
+                        <li>0.61%</li>
+                        <li>17.44</li>
+                        <li>0.9</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="stock_item">
+                        <li>
+                            <span>上证指数</span><br />
+                            <span>1A0001</span>
+                        </li>
+                        <li>2792.19</li>
+                        <li>0.61%</li>
+                        <li>17.44</li>
+                        <li>0.9</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="stock_item">
+                        <li>
+                            <span>上证指数</span><br />
+                            <span>1A0001</span>
+                        </li>
+                        <li>2792.19</li>
+                        <li>0.61%</li>
+                        <li>17.44</li>
+                        <li>0.9</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </main>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script>
+
+    apiready = function(){
+        $api.fixStatusBar($api.dom('.sl_header'));
+        api.parseTapmode();
+        fixMainH();
+    }
+        
+</script>
+
+</html>

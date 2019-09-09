@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>快报-深沪</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+            html,
+    body {
+        background-color: #010646;
+    }
+    </style>
+</head>
+<body>
+    <div class="shenhu_tempList">
+
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/plugins/swiper.min.js"></script>
+<script src="../script/sl_news_fast_fm.js"></script>
+<script>
+                let a=[{
+                day:'2019-09-10',
+                dayCon:[ {
+                time:'13:02',
+                newsCon:'证券时报e公司讯，宝钢股份(600019)8月22日晚披露半年报，公司上半年营收为1408.76亿元，同比下降5.16%；净利为61.87亿元，同比下降38.19%。每股收益0.28元。一季度，板材市场低迷，钢材价格环比大幅下降；二季度起受原料价格支撑及国家减费降税影响，钢材价格小幅上涨，但6月起受国内产能释放及需求偏弱影响，钢材价格出现下降。'
+            }, {
+                time:'15:15',
+                newsCon:'戴志浩谈论的是2016年启动的中国钢铁行业供给侧改革给中国钢铁业带来的影响。经历了2015年的“冰冻期”， “高杠杆”可以从某种角度说明钢铁行业生存的艰难。2016年，中钢协会员企业平均资产负债率统计为69.6%，高过规模以上工业企业平均水平13.8个百分点。在此前的16年时间里，平均资产负债率从48.92%上升到69.60%。'
+            }, {
+                time:'15:15',
+                newsCon:'供给侧改革对钢铁行业的影响最直观的莫过于钢价回升。2015年年底，西本钢材指数跌到近1900元/吨，创近年来最低点。1年之后，该指数回升至3500元/吨左右。2017年底，则一度站上5000元/吨高点。2018年10月，西本钢材指数基本稳定在4800元/吨以上。'
+            }]
+        },
+        {
+                day:'2019-09-08',
+                dayCon:[ {
+                time:'08:15',
+                newsCon:'经历近3年的行业供给侧改革，再结合当下不确定的宏观经济和国际贸易环境，戴志浩表示，“供给侧改革实际上为我们争取了3年时间，为接下来的紧日子做了一些准备。”'
+            }, {
+                time:'09:32',
+                newsCon:'当年中国钢材出口量也依然飙升19.9%至1.12亿吨，刷新历史最高纪录。这一出口量超过了日本2015年的粗钢产量，是美国的1.4倍，德国的2.6倍。大量涌向国际市场的中国钢材也让中国面临更多的国际贸易摩擦和指责。'
+            }, {
+                time:'10:00',
+                newsCon:'“在过去中国改革开放40年经济的腾飞下，需求一直不是问题，中国钢铁行业一直是供给侧的问题，供给侧不受控制地野蛮式增长。供给侧改革的第一件事就是用雷霆手段控制了新增产能，抓住了这个牛鼻子。'
+            }]
+        },
+        {
+                day:'2019-08-18',
+                dayCon:[ {
+                time:'11:15',
+                newsCon:'2016年初，高层提出“十三五”期间共计划压减1-1.5亿吨粗钢产能。不包括“地条钢”，2016年实际压减了6500万吨以上粗钢产能，2017年压减了5500万吨以上粗钢产能，两年累计压减1.2亿吨以上，两年完成了上限目标任务的80%以上。2018年计划压减粗钢产能3000万吨。'
+            }, {
+                time:'12:12',
+                newsCon:'宝钢股份多年来的拳头产品是汽车板。尤其近20年来，伴随着中国汽车行业飞速发展、成为世界第一大制造国和第一大消费国，将汽车板选择为战略产品的宝钢股份也享受了高额回报。'
+            }, {
+                time:'13:13',
+                newsCon:'988年至今，宝钢汽车板经历了国产化替代、品质保障、引领汽车用钢三个主要阶段。宝钢股份累计为中国汽车行业提供汽车板8000余万吨，2017年宝钢汽车板销售1225万吨，首次进入世界前三。汽车用钢整体占据50%以上中国市场份额'
+            }]
+        }]
+
+    apiready = function(){
+        api.addEventListener({
+            name: 'str'
+        }, function(ret, err){
+            console.log(JSON.stringify(ret));
+            $('.shenhu_tempList').append(ret.value);
+        });
+        for (let i = 0 ; i<a.length ; i++) {
+            let item = a[i];
+            api.execScript({
+                frameName: 'sl_news_fast_fm',
+                script:'getStr('+ JSON.stringify(a[i]) +');'
+            });
+        }
+    }
+        
+</script>
+
+</html>

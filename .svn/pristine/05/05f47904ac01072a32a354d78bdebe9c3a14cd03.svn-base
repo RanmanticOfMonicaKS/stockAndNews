@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" href="../css/api.css">
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+
+    <title>断网页面</title>
+    <style>
+        html,
+    body {
+        background-color: #010646;
+    }
+    </style>
+    <style>
+        .offline_box{ 
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            width: 240px;
+            height: 400px;
+        }
+        .offline_tips {
+            width: 200px;
+            height: 200px;
+            margin:  0 auto 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline_box">
+        <div class="offline_tips">
+            <img src="../image/offline.png" alt="">
+        </div>
+        <div class="offline_btn sl_skin" tapmode onclick="reqOnLine();">重试</div>
+    </div>
+</body>
+<script src="../script/plugins/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/common.js"></script>
+<script>
+    apiready = function(){
+        api.parseTapmode();
+        api.toast({
+            msg: '网络异常，请检查网络',
+            duration: 2000,
+            location: 'bottom'
+        });
+    }
+        const reqOnLine =() => {
+            let connectionType = api.connectionType;
+            console.log(JSON.stringify(connectionType));
+            if(connectionType === 'none') {
+                api.toast({
+                    msg: '网络异常,请重试~~',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+            } else {
+                let sl_uInfo = $api.getStorage('sl_uInfo') || {};
+                if(sl_uInfo.sl_uname) {
+                    api.openWin({
+                        name: 'sl_main',
+                        url: 'sl_main.html',
+                    });
+                } else {
+                    api.openWin({
+                        name: 'sign_login',
+                        url: 'sl_sign_register.html',
+                        bounces: false,
+                        pageParam: {key : 'value'}
+                    });
+                }
+                setTimeout(() => {
+                    api.closeWin({
+                    });
+                    
+                }, 300);
+            }
+        }
+</script>
+</html>

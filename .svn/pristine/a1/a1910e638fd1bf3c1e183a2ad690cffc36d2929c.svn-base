@@ -1,0 +1,65 @@
+
+// 1. root窗口，监听keyback 提示退出应用;
+
+const rootToEixt = () => {
+    // a. 设置可以退出时间段 
+    var ableToOut = null;
+    api.addEventListener({
+        name: 'keyback'
+    }, function(ret, err){
+        if(!ableToOut) {
+            return api.toast({
+                msg: api.appName+' 3s内再次点击退出应用',
+                duration: 2000,
+                location: 'bottom'
+            });
+        } else {
+            ableToOut  = { timeout:3000 };
+            setTimeout(() => {
+                ableToOut = null;
+            }, ableToOut.timeout);
+        }
+    });
+}
+
+
+// 2. 根据登录状况，进入主页还是起始页
+const goToWhere = () => {
+
+} 
+
+// 3. 跳转到主页 
+
+const goToMain =  () => {
+    api.openFrame({
+        name: 'main',
+        url: './html/main.html',
+        bounces: false,
+        rect: {
+            x: 0,
+            y: 0,
+            w: 'auto',
+            h: 'auto'
+        }
+    });
+    // --------- 添加后续逻辑 --------------------
+
+} 
+
+// 4. 跳转到起始页 ( 注：选择等还是注册的页面 )
+
+const goToSign_login = () => {
+    api.openFrame({
+        name: 'sign_login',
+        url: './html/sign_login.html',
+        rect: {
+            x: 0,
+            y: 0,
+            w: 'auto',
+            h: 'auto'
+        },
+    });
+    // --------- 添加后续逻辑 --------------------
+
+    // --------------------------
+}

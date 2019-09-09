@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>快报-港股</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+            html,
+    body {
+        background-color: #010646;
+    }
+    </style>
+</head>
+<body>
+    <div class="gang_tempList">
+
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/sl_news_fast_fm.js"></script>
+<script>
+                let a=[{
+                day:'2019-09-03',
+                dayCon:[ {
+                time:'15:02',
+                newsCon:'2007年以来，邮储银行充分发挥自身优势，与其他商业银行形成良性互补，从过去的储汇机构快速成长为一家具有鲜明零售特色的国有大型商业银行。2012年1月，邮储银行由有限责任公司整体变更为股份有限公司，正式更名为“中国邮政储蓄银行股份有限公司”。'
+            }, {
+                time:'11:05',
+                newsCon:'截至2018年末，邮储银行共有39,719个营业网点，其中包括7,962个自营网点和31,757个代理网点，营业网点覆盖中国99%的县(市)，覆盖范围广。'
+            }, {
+                time:'10:03',
+                newsCon:'个人银行业务是邮储银行主要的收入来源，2016-2018年，个人银行业务收入占比分别71.46%、66.12%、62.67%，占比始终稳定在60%以上。'
+            }]
+        },
+        {
+                day:'2019-09-02',
+                dayCon:[ {
+                time:'10:15',
+                newsCon:'横向建立客户基础的同时，邮储银行不断纵向挖掘客户价值，积极对客户开展综合营销，通过构建财富管理体系，促进中高端客户价值贡献释放。截至2018年末，VIP客户总数2,793万户，2016年至2018年的年均复合增长率为12.80%。'
+            }, {
+                time:'08:15',
+                newsCon:'截至2018年末，邮储银行个人消费贷款(包括个人住房贷款和个人其他消费贷款)为1.69万亿元，2016年至2018年的年均复合增长率达23.98%，高于22.83%的同期行业年均复合增长率。'
+            }, {
+                time:'06:15',
+                newsCon:'截至2018年末，邮储银行共拓展10.07万个助农服务点商户。2018年度，邮储银行累计助农账务类交易笔数2,039.91万笔，查询类交易笔数1,337.98万笔，助农交易金额142.11亿元。'
+            }]
+        },
+        {
+                day:'2019-09-02',
+                dayCon:[ {
+                time:'16:15',
+                newsCon:'截至2018年末，邮储银行涉农贷款达11,614.95亿元，占贷款总额的27.16%，其中农户贷款9,320.46亿元，占贷款总额的21.79%。'
+            }, {
+                time:'18:15',
+                newsCon:'2016-2018年，邮储银行资产总额、存款总额和贷款总额均保持逐年稳步增长；其中，截至2018年末，邮储银行存款总额达86,274.40亿元，在中国银行同业中位居第五位，个人存款达74,679.11亿元，在中国银行同业中位居第四位。'
+            }, {
+                time:'20:15',
+                newsCon:'存款是邮储银行负债的最主要来源，2016-2018年，客户存款占邮储银行负债总额比例均高于90%。'
+            }]
+        }]
+
+  apiready = function(){
+
+        api.addEventListener({
+            name: 'str'
+        }, function(ret, err){
+            console.log(JSON.stringify(ret));
+            $('.gang_tempList').append(ret.value);
+        });
+        for (let i = 0 ; i<a.length ; i++) {
+            let item = a[i];
+            api.execScript({
+                frameName: 'sl_news_fast_fm',
+                script:'getStr('+ JSON.stringify(a[i]) +');'
+            });
+        }
+    }
+    
+    
+</script>
+</script>
+
+</html>

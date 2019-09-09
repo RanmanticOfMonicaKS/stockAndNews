@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+       html,body {
+            background-color: #010646;
+        }
+        
+    </style>
+</head>
+
+<body class="wrap">
+    
+    <ul class="sl_footer sl_flex_sa">
+        <li class="sl_home active">
+            <span class="fa fa-home"></span>
+            <p>首页</p>
+        </li>
+        <li class="sl_market">
+            <span class="fa fa-line-chart"></span>
+            <p>行情</p>
+        </li>
+        <li class="sl_news">
+            <span class="fa fa-newspaper-o"></span>
+            <p>资讯</p>
+        </li>
+        <li class="sl_mine">
+            <span class="fa fa-plus-circle"></span>
+            <p>自选</p>
+        </li>
+    </ul>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/sl_main.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        rootToEixt();
+        sl_opnwhichFrame(0);
+        sl_swithFrames();
+    };
+</script>
+
+</html>

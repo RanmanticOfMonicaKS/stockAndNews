@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+</head>
+<style>
+        html,
+    body {
+        background-color: #010646;
+    }
+
+    .sl_header>.center {
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        text-align: center;
+        font-size: 18px;
+    }
+    .center>span.fa {
+        position: absolute;
+        top: 50%;
+        left: 30px;
+        transform: translate(0, -50%);
+        color: #B1B1BC;
+        font-size: 30px;
+        padding: 0 10px;
+    }
+    .sl_userInfo {
+        padding-top: 10px;
+    }
+    .sl_userInfo li {
+        background-color: #111453;
+        margin-bottom: 10px;
+    }
+    .sl_user_touxiang {
+        height: 120px;
+        padding: 10px 20px;
+    }
+    .sl_touxiang_img {
+        float: left;
+        width: 100px;
+        height: 100px;
+    }
+    .sl_touxiang_img img {
+        width: 100%;
+        border-radius: 50%;
+    }
+    .sl_user_nickname,
+    .sl_user_sex {
+        height: 50px;
+        padding: 0 20px;
+        line-height: 50px;
+    }
+    .update_info {
+        width: 100px;
+        float: right;
+        line-height: 60px;
+    }
+    .update_info >i {
+        color:#93D4FD;
+    }
+    .sex_icon_choose {
+        display: inline-block;
+        border-radius: 10px;
+        width: 80px;
+        height: 30px;
+        margin-top: 10px;
+    }
+    .sex_icon_choose span {
+        width: 50%;
+        height: 100%;
+    }
+    .sex_icon_choose span:nth-child(1) {
+        box-shadow: 1px 0 0 #fff;
+        background-image: url('../image/xingbienan.png');
+        background-size: 30px 30px;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+    }
+    .sex_icon_choose span:nth-child(2) {
+        background-image: url('../image/xingbienv.png');
+        background-size: 30px 30px;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    .sex_icon_choose.male {
+        background-color: #D23F99;
+    }
+    .sex_icon_choose.female {
+        background-color: #93D4FD;
+    }
+    .sex_text.left {
+        margin-left: 20px;
+    }
+</style>
+<body>
+    <header class="sl_header">
+        <div class="center" tapmode>
+            <span>个人设置</span>
+            <span class="fa fa-chevron-left " onclick="closeWin();" tapmode></span>
+        </div>      
+    </header>
+    <ul class="sl_userInfo">
+        <li class="sl_user_touxiang">
+            <div class="sl_touxiang_img">
+                <img src="../image/sl_touxiang.jpeg" alt="">
+            </div>
+            <div class="update_info" tapmode onclick="goToEdit();">
+                <i class="fa fa-file-text"></i>&nbsp;&nbsp;修改
+            </div>
+        </li>
+        <li class="sl_user_nickname">
+            <div class="left">昵称</div><div class="right">挥金如土的猪</div>
+        </li>
+        <li class="sl_user_sex">
+                <div class="left">性别</div>
+                <div class="right">
+                    <div class="sex_icon_choose left female">
+                        <span></span><span></span>      
+                    </div>
+                    <span class="sex_text left">女</span>
+                </div>
+        </li>
+    </ul>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/common.js"></script>
+<script src="../script/sl_user.js"></script>
+<script>
+    apiready = function(){
+        api.parseTapmode();
+    }
+        
+</script>
+</html>

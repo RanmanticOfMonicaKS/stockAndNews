@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的收藏</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/aui.css">
+    <link rel="stylesheet" href="../css/sl_common.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+        html,
+        body {
+            background-color: #010646;
+        }
+        h5 {
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        p {
+            color:#eee;
+            font-size: 14px;
+        }
+        .category li {
+            width: 100px;
+            height: 30px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 5px;
+            color:#3a4a5a;
+        }
+        .category_item.active {
+            background-color: #93D4FD;
+            color:#fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="sl_header">
+        <div class="center" tapmode>
+            <span>意见反馈</span>
+            <span class="fa fa-chevron-left " onclick="closeWin();" tapmode></span>
+        </div>
+    </header>
+    <main>
+        <section class="top">
+            <h5 class="top_hd">意见与建议</h5>
+            <p class="top_bd">欢迎您对本产品提出问题，根据您提出的问题反馈，我们的产品经理会根据实际情况做出修改。</p>
+        </section>
+        <section class="content">
+            <h5 class="content_hd"></h5>
+            <ul class="category sl_flex_sb">
+                <li class="category_item" tapmmode data-type="1">功能与异常</li>
+                <li class="category_item" tapmmode data-type="2">建议</li>
+                <li class="category_item" tapmmode data-type="3">其他</li>
+            </ul>
+        </section>
+        <section class="upimg">
+    
+        </section>
+
+    </main>
+</body>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/plugins/jquery.min.js"></script>
+<script src="../script/plugins/doT.min.js"></script>
+<script src="../script/common.js"></script>
+<script>
+    apiready = function () {
+        api.parseTapmode();
+        $api.fixStatusBar($api.dom('.sl_header'));
+        fixMainH();
+        clickCategory();
+    }
+    const clickCategory = () => {
+        
+        $('.category_item').on('click',function() {
+            $(this).addClass('active').siblings('li').removeClass('active');
+            let type = $(this).data('type');
+            console.log(JSON.stringify(type));
+            
+        })
+    }
+</script>
+
+</html>
